@@ -122,6 +122,16 @@ class Karuk_Products {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-karuk-products-public.php';
 
+		/**
+		 * The class responsible for defining the product post type.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-karuk-products-post-type.php';
+
+		/**
+		 * The class responsible for defining the custom taxonomy for product categories.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-karuk-products-categories-taxonomy.php';
+
 		$this->loader = new Karuk_Products_Loader();
 
 	}
@@ -157,6 +167,12 @@ class Karuk_Products {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
+
+		// Define custom taxonomy and post-type
+		$category_taxonomy = new Karuk_Product_Category_Taxonomy();
+		$products_post_type = new Karuk_Products_Post_Type();
+		$this->loader->add_action( 'init', $category_taxonomy, 'create_product_category' );
+		$this->loader->add_action( 'init', $products_post_type, 'create_products' );
 
 	}
 
