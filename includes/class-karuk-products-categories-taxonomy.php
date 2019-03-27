@@ -22,13 +22,10 @@ class Karuk_Product_Category_Taxonomy {
 	private $slug;
 
 	public function __construct() {
-
 		$this->slug = 'products_category';
-		add_action('init', array($this, 'create_product_category'));
-
 	}
 
-	private function create_product_category() {
+	public function create_product_category() {
 
 			// Second attribute $object_type is custom post-type products
 			register_taxonomy(
@@ -43,7 +40,7 @@ class Karuk_Product_Category_Taxonomy {
 					'show_in_nav_menus' => true,
 					'show_tagcloud' => false,
 					'hierarchical' => true,
-					'rewrite' => array('slug' => $this->$slug)
+					'rewrite' => array('slug' => $this->slug)
 				)
 			);
 
