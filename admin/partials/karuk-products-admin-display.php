@@ -12,5 +12,6 @@
  * @subpackage Karuk_Products/admin/partials
  */
 ?>
-
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+
+<h1>Products</h1>
