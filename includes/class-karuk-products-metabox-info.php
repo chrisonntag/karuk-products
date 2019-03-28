@@ -22,7 +22,7 @@
  * @subpackage Karuk_Products/includes
  * @author     Christoph Sonntag <info@chrisonntag.com>
  */
-class Karuk_Products_Metabox {
+class Karuk_Products_Metabox_Info {
 
 	/**
 	 * Used for the database as a prefix.
@@ -44,64 +44,43 @@ class Karuk_Products_Metabox {
 		$prefix = 'kp_';
 		$this->fields = array(
 			array(
-				'name' => __('Subtitle', 'karuk-products'),
-				'desc' => __('Enter subtitle here', 'karuk-products'),
-				'id' => $prefix . 'subtitle',
-				'type' => 'text',
-				'std' => ''
-			),
-			array(
-				'name' => __('Manufacturer', 'karuk-products'),
-				'desc' => __('Enter manufacturer link', 'karuk-products'),
-				'id' => $prefix . 'manufacturer',
-				'type' => 'text',
-				'std' => ''
-			),
-			array(
-				'name' => __('Data Sheet', 'karuk-products'),
-				'desc' => __('Enter link to data sheet', 'karuk-products'),
-				'id' => $prefix . 'datasheet',
-				'type' => 'text',
-				'std' => ''
-			),
-			array(
 				'name' => __('Info title 1', 'karuk-products'),
-				'desc' => __('Enter info title for first box', 'karuk-products'),
+				'desc' => __('', 'karuk-products'),
 				'id' => $prefix . 'info_title_1',
 				'type' => 'text',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info content 1', 'karuk-products'),
-				'desc' => __('Enter info content for first box', 'karuk-products'),
+				'desc' => __('', 'karuk-products'),
 				'id' => $prefix . 'info_content_1',
 				'type' => 'textarea',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info title 2', 'karuk-products'),
-				'desc' => __('Enter info title for second box', 'karuk-products'),
+				'desc' => __('', 'karuk-products'),
 				'id' => $prefix . 'info_title_2',
 				'type' => 'text',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info content 2', 'karuk-products'),
-				'desc' => __('Enter info content for second box', 'karuk-products'),
+				'desc' => __('', 'karuk-products'),
 				'id' => $prefix . 'info_content_2',
 				'type' => 'textarea',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info title 3', 'karuk-products'),
-				'desc' => __('Enter info title for third box', 'karuk-products'),
+				'desc' => __('', 'karuk-products'),
 				'id' => $prefix . 'info_title_3',
 				'type' => 'text',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info content 3', 'karuk-products'),
-				'desc' => __('Enter info content for third box', 'karuk-products'),
+				'desc' => __('', 'karuk-products'),
 				'id' => $prefix . 'info_content_3',
 				'type' => 'textarea',
 				'std' => ''
@@ -116,8 +95,8 @@ class Karuk_Products_Metabox {
 		$post_types = array('products'); //limit meta box to certain post types
 		if ( in_array( $post_type, $post_types )) {
 			add_meta_box(
-				'products_meta_box'
-				,__( 'Product Options', 'karuk-products' )
+				'products_meta_box_info'
+				,__( 'Info', 'karuk-products' )
 				,array( $this, 'render_meta_box_content' )
 				,$post_type
 				,'normal'
@@ -139,13 +118,13 @@ class Karuk_Products_Metabox {
 		 */
 
 		// Check if our nonce is set.
-		if ( ! isset( $_POST['products_meta_box_nonce'] ) )
+		if ( ! isset( $_POST['products_meta_box_info_nonce'] ) )
 			return $post_id;
 
-		$nonce = $_POST['products_meta_box_nonce'];
+		$nonce = $_POST['products_meta_box_info_nonce'];
 
 		// Verify that the nonce is valid.
-		if ( ! wp_verify_nonce( $nonce, 'karuk_products_inner_meta_box' ) )
+		if ( ! wp_verify_nonce( $nonce, 'karuk_products_inner_meta_box_info' ) )
 			return $post_id;
 
 		// If this is an autosave, our form has not been submitted,
@@ -188,13 +167,13 @@ class Karuk_Products_Metabox {
 	public function render_meta_box_content( $post ) {
 
 		// Add an nonce field so we can check for it later.
-		wp_nonce_field( 'karuk_products_inner_meta_box', 'products_meta_box_nonce' );
+		wp_nonce_field( 'karuk_products_inner_meta_box_info', 'products_meta_box_info_nonce' );
 
 		// Use get_post_meta to retrieve an existing value from the database.
 		$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
 
 		// Display the form, using the current value.
-
+		echo '<p><i>Enter title and content for the information boxes here. They accept HTML code as well.</i></p>';
 		echo '<table class="form-table">';
 		foreach ($this->fields as $field) {
 		// get current post meta data

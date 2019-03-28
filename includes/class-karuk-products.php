@@ -135,7 +135,12 @@ class Karuk_Products {
 		/**
 		 * Used in order to store further information within the custom post type.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-karuk-products-metabox.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-karuk-products-metabox-main.php';
+
+		/**
+		 * Used in order to store further information within the custom post type.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-karuk-products-metabox-info.php';
 
 		$this->loader = new Karuk_Products_Loader();
 
@@ -180,10 +185,13 @@ class Karuk_Products {
 		$this->loader->add_action( 'init', $products_post_type, 'create_products' );
 
 		// Register metabox and save function when publishing the custom post-type.
-		$metabox = new Karuk_Products_Metabox();
+		$metabox_main = new Karuk_Products_Metabox_Main();
+		$metabox_info = new Karuk_Products_Metabox_Info();
 		if ( is_admin() ) {
-			$this->loader->add_action( 'load-post.php', $metabox, '__construct' );
-			$this->loader->add_action( 'load-post-new.php', $metabox, '__construct' );
+			$this->loader->add_action( 'load-post.php', $metabox_main, '__construct' );
+			$this->loader->add_action( 'load-post-new.php', $metabox_main, '__construct' );
+			$this->loader->add_action( 'load-post.php', $metabox_info, '__construct' );
+			$this->loader->add_action( 'load-post-new.php', $metabox_info, '__construct' );
 		}
 	}
 
