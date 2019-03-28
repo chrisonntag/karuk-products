@@ -55,6 +55,21 @@ class Karuk_Products_Public {
 	}
 
 	/**
+	 * Register the template for our custom post-type.
+	 *
+	 * @since    1.0.0
+	 */
+	public function load_products_template($template) {
+		global $post;
+
+    if ($post->post_type == "products" && $template !== locate_template(array("single-product.php"))){
+        return plugin_dir_path( __FILE__ ) . "partials/single-product.php";
+    }
+
+    return $template;
+	}
+
+	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
 	 * @since    1.0.0

@@ -114,7 +114,7 @@ class Karuk_Products_Admin {
      *        Administration Menus: http://codex.wordpress.org/Administration_Menus
      *
      */
-    add_menu_page( 'Karuk Products', 'Products', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page'), '', 30 );
+    add_submenu_page( 'edit.php?post_type=products', 'Settings', 'Settings', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page'), '', 30 );
 	}
 
 	 /**

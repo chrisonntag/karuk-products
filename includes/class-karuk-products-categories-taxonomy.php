@@ -31,7 +31,7 @@ class Karuk_Product_Category_Taxonomy {
 			register_taxonomy(
 				'karuk_products_category', 'products', array(
 					'labels' => array(
-						'name' => __('Products Categories', 'karuk-products'),
+						'name' => __('Categories', 'karuk-products'),
 						'add_new_item' => __('Add category', 'karuk-products'),
 						'new_item_name' => __('New category', 'karuk-products')
 					),
@@ -40,7 +40,7 @@ class Karuk_Product_Category_Taxonomy {
 					'show_in_nav_menus' => true,
 					'show_tagcloud' => false,
 					'hierarchical' => true,
-					'rewrite' => array('slug' => $this->slug)
+					'rewrite' => array('slug' => 'categories', 'hierarchical' => true, 'with_front' => false)
 				)
 			);
 

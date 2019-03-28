@@ -44,10 +44,11 @@ class Karuk_Products_Post_Type {
 				),
 				'public' => true,
 				'menu_position' => 30,
-				'supports' => array('title', 'thumbnail', 'custom-fields', 'page-attributes'),
+				'supports' => array('title', 'thumbnail', 'editor', 'page-attributes'),
 				'taxonomies' => array('products_category'),
 				'has_archive' => true,
-				'rewrite' => array('slug' => $this->slug, 'with_front' => false)
+				'rewrite' => array('slug' => $this->slug, 'with_front' => false),
+				'show_in_rest' => true
 			)
 		);
 
