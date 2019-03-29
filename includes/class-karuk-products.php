@@ -49,6 +49,15 @@ class Karuk_Products {
 	protected $plugin_name;
 
 	/**
+	 * The prefix used for custom fields in meta boxes.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $prefix    The string used for custom fields.
+	 */
+	protected $prefix;
+
+	/**
 	 * The current version of the plugin.
 	 *
 	 * @since    1.0.0
@@ -73,6 +82,7 @@ class Karuk_Products {
 			$this->version = '1.0.0';
 		}
 		$this->plugin_name = 'karuk-products';
+		$this->prefix = 'kp_';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -121,6 +131,11 @@ class Karuk_Products {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-karuk-products-public.php';
+
+		/**
+		 * Custom Taxonomy meta box
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Tax-meta-class/Tax-meta-class.php';
 
 		/**
 		 * The class responsible for defining the product post type.
@@ -185,14 +200,30 @@ class Karuk_Products {
 		$this->loader->add_action( 'init', $products_post_type, 'create_products' );
 
 		// Register metabox and save function when publishing the custom post-type.
-		$metabox_main = new Karuk_Products_Metabox_Main();
-		$metabox_info = new Karuk_Products_Metabox_Info();
+		$metabox_main = new Karuk_Products_Metabox_Main($this->prefix);
+		$metabox_info = new Karuk_Products_Metabox_Info($this->prefix);
 		if ( is_admin() ) {
 			$this->loader->add_action( 'load-post.php', $metabox_main, '__construct' );
 			$this->loader->add_action( 'load-post-new.php', $metabox_main, '__construct' );
 			$this->loader->add_action( 'load-post.php', $metabox_info, '__construct' );
 			$this->loader->add_action( 'load-post-new.php', $metabox_info, '__construct' );
 		}
+
+		// Register custom metaboxes for categories taxonomy. 
+		$karuk_categories_meta_config = array(
+	    'id' => 'karuk_categories_meta_image', //unique
+	    'title' => 'Image',
+	    'pages' => array('karuk_products_category'),
+	    'context' => 'normal',            // where the meta box appear: normal (default), advanced, side; optional
+	    'fields' => array(),            	// list of meta fields (can be added by field arrays)
+	    'local_images' => false,          // Use local or hosted images (meta box images for add/remove)
+	    'use_with_theme' => false         //change path if used with theme set to true, false for a plugin or anything else for a custom path.
+	  );
+		if ( is_admin() ) {
+			$karuk_categories_meta = new Tax_Meta_Class($karuk_categories_meta_config);
+			$karuk_categories_meta->addFile($this->prefix.'image_field_id',array('name'=> __('Category Image ','karuk-products')));
+			$karuk_categories_meta->Finish();
+		}		
 	}
 
 	/**

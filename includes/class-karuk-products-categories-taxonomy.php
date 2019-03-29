@@ -22,14 +22,14 @@ class Karuk_Product_Category_Taxonomy {
 	private $slug;
 
 	public function __construct() {
-		$this->slug = 'products_category';
+		$this->slug = 'karuk_products_category';
 	}
 
 	public function create_product_category() {
 
 			// Second attribute $object_type is custom post-type products
 			register_taxonomy(
-				'karuk_products_category', 'products', array(
+				$this->slug, 'products', array(
 					'labels' => array(
 						'name' => __('Categories', 'karuk-products'),
 						'add_new_item' => __('Add category', 'karuk-products'),

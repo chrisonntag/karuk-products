@@ -74,6 +74,7 @@ class Karuk_Products_Admin {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/karuk-products-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'Tax-meta-class/css/Tax-meta-class.css', array(), $this->version, 'all' );
 
 	}
 
@@ -97,6 +98,7 @@ class Karuk_Products_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/karuk-products-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'Tax-meta-class/js/tax-meta-class.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
 
 	}
 

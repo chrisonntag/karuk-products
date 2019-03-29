@@ -37,11 +37,11 @@ class Karuk_Products_Metabox_Main {
 	/*
 	 * Hook into the appropriate actions when the class is constructed.
 	 */
-	public function __construct() {
+	public function __construct($pref) {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 		add_action( 'save_post', array( $this, 'save_product_information' ) );
 
-		$prefix = 'kp_';
+		$prefix = $pref;
 		$this->fields = array(
 			array(
 				'name' => __('Subtitle', 'karuk-products'),
