@@ -138,6 +138,11 @@ class Karuk_Products {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Tax-meta-class/Tax-meta-class.php';
 
 		/**
+		 * Custom post type meta box
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/meta-box-class/my-meta-box-class.php';
+
+		/**
 		 * The class responsible for defining the product post type.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-karuk-products-post-type.php';
@@ -200,13 +205,40 @@ class Karuk_Products {
 		$this->loader->add_action( 'init', $products_post_type, 'create_products' );
 
 		// Register metabox and save function when publishing the custom post-type.
-		$metabox_main = new Karuk_Products_Metabox_Main($this->prefix);
+		$karuk_products_meta_config_datasheet = array(
+	    'id'             => 'products_meta_box_datasheet',    // meta box id, unique per meta box
+	    'title'          => 'Datasheet',          				// meta box title
+	    'pages'          => array('products'),      // post types, accept custom post types as well, default is array('post'); optional
+	    'context'        => 'normal',            		// where the meta box appear: normal (default), advanced, side; optional
+	    'priority'       => 'high',            			// order of meta box: high (default), low; optional
+	    'fields'         => array(),            		// list of meta fields (can be added by field arrays)
+	    'local_images'   => false,          				// Use local or hosted images (meta box images for add/remove)
+	    'use_with_theme' => false          					//change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
+	  );
+	  if ( is_admin() ) {
+	  	$karuk_products_meta_datasheet = new AT_Meta_Box($karuk_products_meta_config_datasheet);
+
+	  	$repeater_fields[] = $karuk_products_meta_datasheet->addImage($this->prefix.'product_image_field_id',array('name'=> 'Product Image'),true);
+	  	$karuk_products_meta_datasheet->addRepeaterBlock($this->prefix.'product_images',array(
+		    'inline'   => true, 
+		    'name'     => 'Product Images',
+		    'fields'   => $repeater_fields, 
+		    'sortable' => true
+		  ));
+
+	  	$karuk_products_meta_datasheet->addText($this->prefix.'datasheet',array('name'=> 'Datasheet Link'));
+	  	$karuk_products_meta_datasheet->addText($this->prefix.'manufacturer',array('name'=> 'Manufacturer Link'));
+	  	$karuk_products_meta_datasheet->addWysiwyg($this->prefix.'products_table',array('name'=> 'Facts Table'));
+	  	$karuk_products_meta_datasheet->Finish();	
+	  }
+
+		//$metabox_main = new Karuk_Products_Metabox_Main($this->prefix);
 		$metabox_info = new Karuk_Products_Metabox_Info($this->prefix);
 		if ( is_admin() ) {
-			$this->loader->add_action( 'load-post.php', $metabox_main, '__construct' );
-			$this->loader->add_action( 'load-post-new.php', $metabox_main, '__construct' );
-			$this->loader->add_action( 'load-post.php', $metabox_info, '__construct' );
-			$this->loader->add_action( 'load-post-new.php', $metabox_info, '__construct' );
+			//$this->loader->add_action( 'load-post.php', $metabox_main, '__construct' );
+			//$this->loader->add_action( 'load-post-new.php', $metabox_main, '__construct' );
+			$this->loader->add_action( 'load-post.php', $metabox_info, 'add_actions' );
+			$this->loader->add_action( 'load-post-new.php', $metabox_info, 'add_actions' );
 		}
 
 		// Register custom metaboxes for categories taxonomy. 

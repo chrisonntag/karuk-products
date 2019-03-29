@@ -89,6 +89,7 @@ class Karuk_Products_Public {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/karuk-products-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/lightslider.min.css', array(), $this->version, 'all' );
 
 	}
 
@@ -111,7 +112,8 @@ class Karuk_Products_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/karuk-products-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name.'_lightslider', plugin_dir_url( __FILE__ ) . 'js/lightslider.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/karuk-products-public.js', array( 'jquery', $this->plugin_name.'_lightslider' ), $this->version, true );
 
 	}
 

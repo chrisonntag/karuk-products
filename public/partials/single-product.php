@@ -26,7 +26,6 @@ get_header();
   <section class="section">
     <div class="container has-text-centered">
       <h1 class="title"><?php the_title(); ?></h1>
-      <h2 class="subtitle"><?php echo get_post_custom()['kp_subtitle'][0]; ?></h2>
       <div class="content">
         <p>
           <?php the_content(); ?>
@@ -42,45 +41,33 @@ get_header();
   <section class="section">
     <div class="container">
       <div class="columns">
-        <div class="column ">
-          <figure class="image">
-            <a href="#">
-              <img src="https://via.placeholder.com/600x350" alt="Product Image" />
-            </a>
-          </figure> 
+        <div class="column is-half">
+
+          <ul id="product-slider">
+            <?php 
+              $re = '/."([^"]+\.(jpg|png|jpeg|JPEG|JPG|PNG|bmp|BMP))"./m';
+              $images_str = get_post_custom()['kp_product_images'][0]; 
+
+              preg_match_all($re, $images_str, $images, PREG_SET_ORDER, 0);
+
+              foreach ($images as $image) {
+            ?>
+              <li>
+                <figure class="image is-2by1">
+                  <a href="#">
+                    <img src="<?php echo $image[1]; ?>" alt="Product Image" />
+                  </a>
+                </figure>
+              </li>
+            <?php
+              }
+            ?>
+          </ul>
+           
         </div>
-        <div class="column">
+        <div class="column is-half">
           <h2 class="title is-4">Datenblatt</h2>
-          <table class="table is-fullwidth is-hoverable">
-            <thead>
-              <tr>
-                <th>One</th>
-                <th>Two</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Three</td>
-                <td>Four</td>
-              </tr>
-              <tr>
-                <td>Five</td>
-                <td>Six</td>
-              </tr>
-              <tr>
-                <td>Seven</td>
-                <td>Eight</td>
-              </tr>
-              <tr>
-                <td>Nine</td>
-                <td>Ten</td>
-              </tr>
-              <tr>
-                <td>Eleven</td>
-                <td>Twelve</td>
-              </tr>
-            </tbody>
-          </table>
+          <?php echo get_post_custom()['kp_products_table'][0]; ?>
           <a href="<?php echo get_post_custom()['kp_manufacturer'][0]; ?>" class="button is-light is-medium">Link zum Hersteller</a>
           <a href="<?php echo get_post_custom()['kp_datasheet'][0]; ?>" class="button is-light is-medium">Datenblatt</a>
           <a href="#" class="button is-light is-medium">Download</a>

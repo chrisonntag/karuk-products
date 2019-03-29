@@ -38,50 +38,53 @@ class Karuk_Products_Metabox_Info {
 	 * Hook into the appropriate actions when the class is constructed.
 	 */
 	public function __construct($pref) {
+		$this->prefix = $pref;
+	}
+
+	public function add_actions() {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 		add_action( 'save_post', array( $this, 'save_product_information' ) );
 
-		$prefix = $pref;
 		$this->fields = array(
 			array(
 				'name' => __('Info title 1', 'karuk-products'),
 				'desc' => __('', 'karuk-products'),
-				'id' => $prefix . 'info_title_1',
+				'id' => $this->prefix . 'info_title_1',
 				'type' => 'text',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info content 1', 'karuk-products'),
 				'desc' => __('', 'karuk-products'),
-				'id' => $prefix . 'info_content_1',
+				'id' => $this->prefix . 'info_content_1',
 				'type' => 'textarea',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info title 2', 'karuk-products'),
 				'desc' => __('', 'karuk-products'),
-				'id' => $prefix . 'info_title_2',
+				'id' => $this->prefix . 'info_title_2',
 				'type' => 'text',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info content 2', 'karuk-products'),
 				'desc' => __('', 'karuk-products'),
-				'id' => $prefix . 'info_content_2',
+				'id' => $this->prefix . 'info_content_2',
 				'type' => 'textarea',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info title 3', 'karuk-products'),
 				'desc' => __('', 'karuk-products'),
-				'id' => $prefix . 'info_title_3',
+				'id' => $this->prefix . 'info_title_3',
 				'type' => 'text',
 				'std' => ''
 			),
 			array(
 				'name' => __('Info content 3', 'karuk-products'),
 				'desc' => __('', 'karuk-products'),
-				'id' => $prefix . 'info_content_3',
+				'id' => $this->prefix . 'info_content_3',
 				'type' => 'textarea',
 				'std' => ''
 			)
