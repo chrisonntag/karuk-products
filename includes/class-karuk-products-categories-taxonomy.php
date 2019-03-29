@@ -31,7 +31,7 @@ class Karuk_Product_Category_Taxonomy {
 			register_taxonomy(
 				$this->slug, 'products', array(
 					'labels' => array(
-						'name' => __('Categories', 'karuk-products'),
+						'name' => __('Product Category', 'karuk-products'),
 						'add_new_item' => __('Add category', 'karuk-products'),
 						'new_item_name' => __('New category', 'karuk-products')
 					),

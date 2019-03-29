@@ -12,6 +12,7 @@ get_header();
 
   <?php
   while ( have_posts() ) :
+    $post = get_queried_object();
     the_post();
 
   ?>
@@ -30,9 +31,13 @@ get_header();
         <p>
           <?php the_content(); ?>
         </p>
-        <span class="tag is-light">#4K</span>
-        <span class="tag is-light">#Cinema</span>
-        <span class="tag is-light">#Camera</span>
+        <?php
+          $tags = wp_get_post_tags($post->ID);
+          foreach ($tags as $tag) {
+            $tag = $tag->to_array();
+            echo '<a href="'. get_tag_link($tag['term_id']) .'"><span class="tag is-light">#'. $tag['name'] .'</span></a>';
+          }
+        ?>
       </div>
     </div>
   </section>r

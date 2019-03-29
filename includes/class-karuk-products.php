@@ -255,7 +255,9 @@ class Karuk_Products {
 			$karuk_categories_meta = new Tax_Meta_Class($karuk_categories_meta_config);
 			$karuk_categories_meta->addFile($this->prefix.'image_field_id',array('name'=> __('Category Image ','karuk-products')));
 			$karuk_categories_meta->Finish();
-		}		
+		}
+
+		register_taxonomy_for_object_type( 'karuk_products_category', 'products' );
 	}
 
 	/**
