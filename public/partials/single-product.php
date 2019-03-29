@@ -13,12 +13,16 @@ get_header();
   <?php
   while ( have_posts() ) :
     $post = get_queried_object();
+    $category_name = wp_get_post_terms($post->ID, 'karuk_products_category')[0];
     the_post();
 
   ?>
 
 	<section class="section">
     <div class="container">
+      <div class="product_link">
+        <a href="<?php echo get_category_link( $category_name->term_id ); ?>"><?php echo __('Show more ', 'karuk'); echo $category_name->name; ?></a>
+      </div>
       <figure class="image is-3by1"><img src="<?php the_post_thumbnail(); ?>" alt="Big Image" /></figure>
     </div>
   </section>
@@ -27,18 +31,20 @@ get_header();
   <section class="section">
     <div class="container has-text-centered">
       <h1 class="title"><?php the_title(); ?></h1>
-      <div class="content">
-        <p>
-          <?php the_content(); ?>
-        </p>
-        <?php
-          $tags = wp_get_post_tags($post->ID);
-          foreach ($tags as $tag) {
-            $tag = $tag->to_array();
-            echo '<a href="'. get_tag_link($tag['term_id']) .'"><span class="tag is-light">#'. $tag['name'] .'</span></a>';
-          }
-        ?>
-      </div>
+        <div class="columns">
+          <div class="content column is-three-fifths is-offset-one-fifth">
+            <p>
+              <?php the_content(); ?>
+            </p>
+            <?php
+              $tags = wp_get_post_tags($post->ID);
+              foreach ($tags as $tag) {
+                $tag = $tag->to_array();
+                echo '<a href="'. get_tag_link($tag['term_id']) .'"><span class="tag is-light">#'. $tag['name'] .'</span></a>';
+              }
+            ?>
+          </div>
+        </div>
     </div>
   </section>r
 
@@ -71,14 +77,21 @@ get_header();
            
         </div>
         <div class="column is-half">
-          <h2 class="title is-4">Datenblatt</h2>
+          <h2 class="title is-4">Technical Facts</h2>
           <?php echo get_post_custom()['kp_products_table'][0]; ?>
-          <a href="<?php echo get_post_custom()['kp_manufacturer'][0]; ?>" class="button is-light is-medium">Link zum Hersteller</a>
-          <a href="<?php echo get_post_custom()['kp_datasheet'][0]; ?>" class="button is-light is-medium">Datenblatt</a>
-          <a href="#" class="button is-light is-medium">Download</a>
+
+          <br />
+
+          <a href="<?php echo get_post_custom()['kp_manufacturer'][0]; ?>" class="button is-light is-small">Hersteller Website</a>
+          <a href="<?php echo get_post_custom()['kp_datasheet'][0]; ?>" class="button is-light is-small">Datenblatt</a>
+          <a href="#" class="button is-light is-small">Downloads</a>
         </div>
       </div>
     </div>
+  </section>
+
+
+  <section class="section">
   </section>
 
 
@@ -115,8 +128,12 @@ get_header();
 
 
   <section class="section">
+  </section>
+
+
+  <section class="section">
     <div class="container has-text-centered">
-      <a href="#" class="button is-medium is-black">Weitere Produkte &gt;</a>
+      <a href="#" class="button is-medium is-black">Weitere Produkte</a>
     </div>
   </section>
 
