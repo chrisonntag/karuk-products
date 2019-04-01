@@ -13,17 +13,27 @@ get_header();
   <?php
   while ( have_posts() ) :
     $post = get_queried_object();
-    $category_name = wp_get_post_terms($post->ID, 'karuk_products_category')[0];
+    $post_custom = get_post_custom();
+    $category_name = wp_get_post_terms($post->ID, 'karuk_products_category');
+    if ( $category_name ):
+      $category_name = $category_name[0];
+    endif;
     the_post();
 
   ?>
 
 	<section class="section">
     <div class="container">
-      <div class="product_link">
-        <a href="<?php echo get_category_link( $category_name->term_id ); ?>"><?php echo __('Show more ', 'karuk'); echo $category_name->name; ?></a>
-      </div>
-      <figure class="image is-3by1"><img src="<?php the_post_thumbnail(); ?>" alt="Big Image" /></figure>
+      <?php if ( $category_name ): ?>
+        <div class="product_link">
+          <a href="<?php echo get_category_link( $category_name->term_id ); ?>"><?php echo __('Show more ', 'karuk'); echo $category_name->name; ?></a>
+        </div>
+      <?php endif; ?>
+      <?php 
+      if ( the_post_thumbnail() ):
+      ?>
+        <figure class="image is-3by1"><img src="<?php the_post_thumbnail(); ?>" alt="Big Image" /></figure>
+      <?php endif; ?>
     </div>
   </section>
 
@@ -57,7 +67,7 @@ get_header();
           <ul id="product-slider">
             <?php 
               $re = '/."([^"]+\.(jpg|png|jpeg|JPEG|JPG|PNG|bmp|BMP))"./m';
-              $images_str = get_post_custom()['kp_product_images'][0]; 
+              $images_str = $post_custom['kp_product_images'][0]; 
 
               preg_match_all($re, $images_str, $images, PREG_SET_ORDER, 0);
 
@@ -78,13 +88,15 @@ get_header();
         </div>
         <div class="column is-half">
           <h2 class="title is-4">Technical Facts</h2>
-          <?php echo get_post_custom()['kp_products_table'][0]; ?>
+          <?php echo $post_custom['kp_products_table'][0]; ?>
 
           <br />
 
-          <a href="<?php echo get_post_custom()['kp_manufacturer'][0]; ?>" class="button is-light is-small">Hersteller Website</a>
-          <a href="<?php echo get_post_custom()['kp_datasheet'][0]; ?>" class="button is-light is-small">Datenblatt</a>
-          <a href="#" class="button is-light is-small">Downloads</a>
+          <a href="<?php echo $post_custom['kp_manufacturer'][0]; ?>" class="button is-light is-small">Hersteller Website</a>
+          <a href="<?php echo $post_custom['kp_datasheet'][0]; ?>" class="button is-light is-small">Datenblatt</a>
+          <?php if ( array_key_exists('kp_product_files', $post_custom) ): ?>
+            <a href="#downloads" class="button is-light is-small">Downloads</a>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -100,25 +112,25 @@ get_header();
       <div class="columns">
         <div class="column">
           <div class="content">
-            <h3 class="title is-4"><?php echo get_post_custom()['kp_info_title_1'][0]; ?></h3>
+            <h3 class="title is-4"><?php echo $post_custom['kp_info_title_1'][0]; ?></h3>
             <p>
-              <?php echo get_post_custom()['kp_info_content_1'][0]; ?>
+              <?php echo $post_custom['kp_info_content_1'][0]; ?>
             </p>
           </div>
         </div>
         <div class="column">
           <div class="content">
-            <h3 class="title is-4"><?php echo get_post_custom()['kp_info_title_2'][0]; ?></h3>
+            <h3 class="title is-4"><?php echo $post_custom['kp_info_title_2'][0]; ?></h3>
             <p>
-              <?php echo get_post_custom()['kp_info_content_2'][0]; ?>
+              <?php echo $post_custom['kp_info_content_2'][0]; ?>
             </p>
           </div>
         </div>
         <div class="column">
           <div class="content">
-            <h3 class="title is-4"><?php echo get_post_custom()['kp_info_title_3'][0]; ?></h3>
+            <h3 class="title is-4"><?php echo $post_custom['kp_info_title_3'][0]; ?></h3>
             <p>
-              <?php echo get_post_custom()['kp_info_content_3'][0]; ?>
+              <?php echo $post_custom['kp_info_content_3'][0]; ?>
             </p>
           </div>
         </div>
@@ -127,13 +139,36 @@ get_header();
   </section>
 
 
-  <section class="section">
+  <?php
+  $files_re = '/."([^"]+\.(pdf))"./m';
+  $files_str = $post_custom;
+
+  if ( array_key_exists('kp_product_files', $files_str) ):
+  ?>
+  <section id="downloads" class="section">
+    <div class="container">
+      <div class="columns">
+        <?php 
+        $files_str = $files_str['kp_product_files'][0]; 
+        preg_match_all($files_re, $files_str, $files, PREG_SET_ORDER, 0);
+
+        foreach ($files as $file) {
+        ?>
+          <div class="column">
+            <a href="<?php echo $file[1]; ?>"><?php echo $file[1]; ?></a>
+          </div>
+        <?php 
+        }
+        ?>
+      </div>
+    </div>
   </section>
+  <?php endif; ?>
 
 
   <section class="section">
     <div class="container has-text-centered">
-      <a href="#" class="button is-medium is-black">Weitere Produkte</a>
+      <a href="#" class="button is-medium is-black">&Auml;hnliche Produkte</a>
     </div>
   </section>
 
