@@ -66,7 +66,7 @@ get_header();
 
           <ul id="product-slider">
             <?php 
-              $re = '/."([^"]+\.(jpg|png|jpeg|JPEG|JPG|PNG|bmp|BMP))"./m';
+              $re = '/."(https?:\/\/[^"]+\.(jpg|png|jpeg|JPEG|JPG|PNG|bmp|BMP))"./m';
               $images_str = $post_custom['kp_product_images'][0]; 
 
               preg_match_all($re, $images_str, $images, PREG_SET_ORDER, 0);
@@ -140,26 +140,59 @@ get_header();
 
 
   <?php
-  $files_re = '/."([^"]+\.(pdf))"./m';
+  $files_re = '/."(https?:\/\/[^"]+\.(\w+))"./m';
   $files_str = $post_custom;
 
   if ( array_key_exists('kp_product_files', $files_str) ):
   ?>
   <section id="downloads" class="section">
     <div class="container">
-      <div class="columns">
-        <?php 
-        $files_str = $files_str['kp_product_files'][0]; 
-        preg_match_all($files_re, $files_str, $files, PREG_SET_ORDER, 0);
+      <div class="level">
+      <?php 
+      $files_str = $files_str['kp_product_files'][0]; 
+      preg_match_all($files_re, $files_str, $files, PREG_SET_ORDER, 0);
 
-        foreach ($files as $file) {
-        ?>
-          <div class="column">
-            <a href="<?php echo $file[1]; ?>"><?php echo $file[1]; ?></a>
-          </div>
-        <?php 
+      foreach ($files as $file) {
+        switch ($file[2]) {
+          case 'pdf':
+            $ext_class = "file-pdf";
+            break;
+          case 'zip':
+          case 'tar':
+            $ext_class = "file-archive";
+            break;
+          case 'xlsx':
+          case 'xls':
+            $ext_class = "file-excel";
+            break;
+          case 'docx':
+          case 'doc':
+            $ext_class = "file-word";
+            break;
+          case 'mp4':
+          case 'mov':
+            $ext_class = "file-video";
+            break;
+          case 'jpg':
+          case 'jpeg':
+          case 'png':
+            $ext_class = "file-image";
+            break;
+          default:
+            $ext_class = "file";
+            break;
         }
-        ?>
+      ?>
+        
+        <a href="<?php echo $file[1]; ?>" class="level-item has-text-centered">
+          <span class="icon is-large">
+            <i class="fa fa-3x fa-<?php echo $ext_class; ?>"></i>
+          </span>
+        </a>
+        
+      <?php 
+      }
+      ?>
       </div>
     </div>
   </section>
