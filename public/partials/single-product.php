@@ -64,13 +64,20 @@ get_header();
       <div class="columns">
         <div class="column is-half">
 
-          <ul id="product-slider">
+          
             <?php 
               $re = '/."(https?:\/\/[^"]+\.(jpg|png|jpeg|JPEG|JPG|PNG|bmp|BMP))"./m';
               $images_str = $post_custom['kp_product_images'][0]; 
 
               preg_match_all($re, $images_str, $images, PREG_SET_ORDER, 0);
 
+              // Don't show slider if only one image has been uploaded.
+              if ( count($images) > 1 ):
+                echo '<ul id="product-slider">';
+              else:
+                echo "<ul>";
+              endif;
+              
               foreach ($images as $image) {
             ?>
               <li>
