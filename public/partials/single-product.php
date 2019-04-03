@@ -74,7 +74,7 @@ get_header();
               foreach ($images as $image) {
             ?>
               <li>
-                <figure class="image is-2by1">
+                <figure class="image is-1by1">
                   <a href="#">
                     <img src="<?php echo $image[1]; ?>" alt="Product Image" />
                   </a>
@@ -103,10 +103,7 @@ get_header();
   </section>
 
 
-  <section class="section">
-  </section>
-
-
+  <?php if ( $post_custom['kp_info_title_1'][0] != '' ): ?>
   <section class="section">
     <div class="container">
       <div class="columns">
@@ -137,6 +134,7 @@ get_header();
       </div>
     </div>
   </section>
+	<?php endif; ?>
 
 
   <?php
@@ -184,7 +182,7 @@ get_header();
         }
       ?>
         
-        <a href="<?php echo $file[1]; ?>" class="level-item has-text-centered">
+        <a href="<?php echo $file[1]; ?>" title="<?php echo $file[1]; ?>" class="level-item has-text-centered">
           <span class="icon is-large">
             <i class="fa fa-3x fa-<?php echo $ext_class; ?>"></i>
           </span>

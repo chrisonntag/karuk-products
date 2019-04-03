@@ -66,6 +66,8 @@ class Karuk_Products {
 	 */
 	protected $version;
 
+	protected $html_table;
+
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -83,6 +85,8 @@ class Karuk_Products {
 		}
 		$this->plugin_name = 'karuk-products';
 		$this->prefix = 'kp_';
+
+		$this->html_table = '<table class="table is-fullwidth is-hoverable"><tbody><tr><td>Feature</td><td>Name</td></tr><tr><td></td><td></td></tr></tbody></table>';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -218,6 +222,8 @@ class Karuk_Products {
 	  if ( is_admin() ) {
 	  	$karuk_products_meta_datasheet = new AT_Meta_Box($karuk_products_meta_config_datasheet);
 
+	  	$karuk_products_meta_datasheet->addCheckbox($this->prefix.'top_product', array('name'=> 'Top Product', 'desc' => 'Check if this product should be shown among the top products.'));
+
 	  	$repeater_fields_images[] = $karuk_products_meta_datasheet->addImage($this->prefix.'product_image_field_id',array('name'=> 'Product Image'),true);
 	  	$karuk_products_meta_datasheet->addRepeaterBlock($this->prefix.'product_images',array(
 		    'inline'   => true, 
@@ -226,12 +232,16 @@ class Karuk_Products {
 		    'sortable' => true
 		  ));
 
-	  	$karuk_products_meta_datasheet->addText($this->prefix.'datasheet',array('name'=> 'Datasheet Link'));
-	  	$karuk_products_meta_datasheet->addText($this->prefix.'manufacturer',array('name'=> 'Manufacturer Link'));
-	  	$karuk_products_meta_datasheet->addWysiwyg($this->prefix.'products_table',array('name'=> 'Facts Table'));
+	  	$karuk_products_meta_datasheet->addText($this->prefix.'datasheet', array('name'=> 'Datasheet Link'));
+	  	$karuk_products_meta_datasheet->addText($this->prefix.'manufacturer', array('name'=> 'Manufacturer Link'));
+	  	$karuk_products_meta_datasheet->addWysiwyg($this->prefix.'products_table', array(
+	  		'name'=> 'Facts Table', 
+	  		'std' => $this->html_table,
+	  		'style' => 'width: 100%;',
+	  	));
 
 	  	$repeater_fields_downloads[] = $karuk_products_meta_datasheet->addFile($this->prefix.'product_file_field_id',array('name'=> 'File'),true);
-	  	$karuk_products_meta_datasheet->addRepeaterBlock($this->prefix.'product_files',array(
+	  	$karuk_products_meta_datasheet->addRepeaterBlock($this->prefix.'product_files', array(
 		    'inline'   => true, 
 		    'name'     => 'Files',
 		    'fields'   => $repeater_fields_downloads, 

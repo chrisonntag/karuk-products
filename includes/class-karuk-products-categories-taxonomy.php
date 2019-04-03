@@ -33,7 +33,8 @@ class Karuk_Product_Category_Taxonomy {
 					'labels' => array(
 						'name' => __('Product Category', 'karuk-products'),
 						'add_new_item' => __('Add category', 'karuk-products'),
-						'new_item_name' => __('New category', 'karuk-products')
+						'new_item_name' => __('New category', 'karuk-products'),
+						'menu_name' => __('Product Categories', 'karuk-products'),
 					),
 					'show_ui' => true,
 					'show_admin_column' => true,
