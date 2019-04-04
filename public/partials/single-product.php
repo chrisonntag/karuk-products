@@ -65,29 +65,28 @@ get_header();
         <div class="column is-half">
 
           
-            <?php 
-              $re = '/."(https?:\/\/[^"]+\.(jpg|png|jpeg|JPEG|JPG|PNG|bmp|BMP))"./m';
-              $images_str = $post_custom['kp_product_images'][0]; 
-
-              preg_match_all($re, $images_str, $images, PREG_SET_ORDER, 0);
-
-              // Don't show slider if only one image has been uploaded.
-              if ( count($images) > 1 ):
-                echo '<ul id="product-slider">';
-              else:
-                echo "<ul>";
-              endif;
-              
-              foreach ($images as $image) {
-            ?>
-              <li>
-                <figure class="image is-1by1">
-                  <a href="#">
-                    <img src="<?php echo $image[1]; ?>" alt="Product Image" />
-                  </a>
-                </figure>
-              </li>
             <?php
+              if (array_key_exists('kp_product_images', $post_custom)) {
+                $images = get_post_meta(get_the_ID(), 'kp_product_images', true);
+  
+                // Don't show slider if only one image has been uploaded.
+                if ( count($images) > 1 ):
+                  echo '<ul id="product-slider">';
+                else:
+                  echo "<ul>";
+                endif;
+                
+                foreach ($images as $image) {
+            ?>
+                <li>
+                  <figure class="image is-1by1">
+                    <a href="#">
+                      <img src="<?php echo $image['kp_product_image_field_id']['url']; ?>" alt="Product Image" />
+                    </a>
+                  </figure>
+                </li>
+            <?php
+                }
               }
             ?>
           </ul>
@@ -145,59 +144,81 @@ get_header();
 
 
   <?php
-  $files_re = '/."(https?:\/\/[^"]+\.(\w+))"./m';
-  $files_str = $post_custom;
-
-  if ( array_key_exists('kp_product_files', $files_str) ):
+  if ( array_key_exists('kp_product_files', $post_custom) ):
   ?>
   <section id="downloads" class="section">
     <div class="container">
-      <div class="level">
-      <?php 
-      $files_str = $files_str['kp_product_files'][0]; 
-      preg_match_all($files_re, $files_str, $files, PREG_SET_ORDER, 0);
+      <div class="columns">
+        <div class="column">
+          <h4 class="title is-5">Downloads</h4>
+          <table class="table is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <td>Datei</td>
+              </tr>
+            </thead>
+            <tbody>
+              <?php 
+              $files = get_post_meta(get_the_ID(), 'kp_product_files', true);
+              
+              foreach ($files as $file) {
+                $file_url = $file['kp_product_file_field_id']['url'];
+                $ext_re = '/[\w|\.|:|\/|-]+\/(\w+)\.(\w+)/m';
+                preg_match_all($ext_re, $file_url, $ext, PREG_SET_ORDER, 0);
 
-      foreach ($files as $file) {
-        switch ($file[2]) {
-          case 'pdf':
-            $ext_class = "file-pdf";
-            break;
-          case 'zip':
-          case 'tar':
-            $ext_class = "file-archive";
-            break;
-          case 'xlsx':
-          case 'xls':
-            $ext_class = "file-excel";
-            break;
-          case 'docx':
-          case 'doc':
-            $ext_class = "file-word";
-            break;
-          case 'mp4':
-          case 'mov':
-            $ext_class = "file-video";
-            break;
-          case 'jpg':
-          case 'jpeg':
-          case 'png':
-            $ext_class = "file-image";
-            break;
-          default:
-            $ext_class = "file";
-            break;
-        }
-      ?>
-        
-        <a href="<?php echo $file[1]; ?>" title="<?php echo $file[1]; ?>" class="level-item has-text-centered">
-          <span class="icon is-large">
-            <i class="fa fa-3x fa-<?php echo $ext_class; ?>"></i>
-          </span>
-        </a>
-        
-      <?php 
-      }
-      ?>
+                switch ($ext[0][2]) {
+                  case 'pdf':
+                    $ext_class = "file-pdf";
+                    break;
+                  case 'zip':
+                  case 'tar':
+                    $ext_class = "file-archive";
+                    break;
+                  case 'xlsx':
+                  case 'xls':
+                    $ext_class = "file-excel";
+                    break;
+                  case 'docx':
+                  case 'doc':
+                    $ext_class = "file-word";
+                    break;
+                  case 'mp4':
+                  case 'mov':
+                    $ext_class = "file-video";
+                    break;
+                  case 'jpg':
+                  case 'jpeg':
+                  case 'png':
+                    $ext_class = "file-image";
+                    break;
+                  default:
+                    $ext_class = "file";
+                    break;
+                }
+              ?>
+                <tr>
+                  <td class="level">
+                    <a href="<?php echo $file_url; ?>" title="<?php echo $file_url; ?>" class="level-left">
+                      <span class="icon is-medium level-item">
+                        <i class="fa fa-2x fa-<?php echo $ext_class; ?>"></i>
+                      </span>
+                      <span class="level-item"><?php echo $ext[0][1]; ?></span>
+                    </a>
+                  </td>
+                </tr>
+                
+              <?php 
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+        <div class="column">
+            <h4 class="title is-5"><?php echo $post_custom['kp_info_title'][0]; ?></h4>
+            <div class="content">
+              <?php echo $post_custom['kp_info_content'][0]; ?>
+            </div>
+        </div>
       </div>
     </div>
   </section>

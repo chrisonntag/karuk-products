@@ -219,7 +219,18 @@ class Karuk_Products {
 	    'local_images'   => false,          				// Use local or hosted images (meta box images for add/remove)
 	    'use_with_theme' => false          					//change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
 	  );
+	  $karuk_products_meta_config_info = array(
+	    'id'             => 'products_meta_box_info',    // meta box id, unique per meta box
+	    'title'          => 'Info',          				// meta box title
+	    'pages'          => array('products'),      // post types, accept custom post types as well, default is array('post'); optional
+	    'context'        => 'normal',            		// where the meta box appear: normal (default), advanced, side; optional
+	    'priority'       => 'high',            			// order of meta box: high (default), low; optional
+	    'fields'         => array(),            		// list of meta fields (can be added by field arrays)
+	    'local_images'   => false,          				// Use local or hosted images (meta box images for add/remove)
+	    'use_with_theme' => false          					//change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
+	  );
 	  if ( is_admin() ) {
+	  	// Datasheet box
 	  	$karuk_products_meta_datasheet = new AT_Meta_Box($karuk_products_meta_config_datasheet);
 
 	  	$karuk_products_meta_datasheet->addCheckbox($this->prefix.'top_product', array('name'=> 'Top Product', 'desc' => 'Check if this product should be shown among the top products.'));
@@ -240,37 +251,23 @@ class Karuk_Products {
 	  		'style' => 'width: 100%;',
 	  	));
 
-	  	$repeater_fields_downloads[] = $karuk_products_meta_datasheet->addFile($this->prefix.'product_file_field_id',array('name'=> 'File'),true);
-	  	$karuk_products_meta_datasheet->addRepeaterBlock($this->prefix.'product_files', array(
+	  	$karuk_products_meta_datasheet->Finish();	
+
+	  	//Info box
+	  	$karuk_products_meta_info = new AT_Meta_Box($karuk_products_meta_config_info);
+
+	  	$repeater_fields_downloads[] = $karuk_products_meta_info->addFile($this->prefix.'product_file_field_id',array('name'=> 'File'),true);
+	  	$karuk_products_meta_info->addRepeaterBlock($this->prefix.'product_files', array(
 		    'inline'   => true, 
 		    'name'     => 'Files',
 		    'fields'   => $repeater_fields_downloads, 
 		    'sortable' => false
 		  ));
-	  	$karuk_products_meta_datasheet->Finish();	
+		  $karuk_products_meta_info->addText($this->prefix.'info_title', array('name'=> 'Title'));
+		  $karuk_products_meta_info->addWysiwyg($this->prefix.'info_content', array('name'=> 'Content'));
+
+		  $karuk_products_meta_info->Finish();
 	  }
-
-		$metabox_info = new Karuk_Products_Metabox_Info($this->prefix);
-		if ( is_admin() ) {
-			$this->loader->add_action( 'load-post.php', $metabox_info, 'add_actions' );
-			$this->loader->add_action( 'load-post-new.php', $metabox_info, 'add_actions' );
-		}
-
-		// Register custom metaboxes for categories taxonomy. 
-		$karuk_categories_meta_config = array(
-	    'id' => 'karuk_categories_meta_image', //unique
-	    'title' => 'Image',
-	    'pages' => array('karuk_products_category'),
-	    'context' => 'normal',            // where the meta box appear: normal (default), advanced, side; optional
-	    'fields' => array(),            	// list of meta fields (can be added by field arrays)
-	    'local_images' => false,          // Use local or hosted images (meta box images for add/remove)
-	    'use_with_theme' => false         //change path if used with theme set to true, false for a plugin or anything else for a custom path.
-	  );
-		if ( is_admin() ) {
-			$karuk_categories_meta = new Tax_Meta_Class($karuk_categories_meta_config);
-			$karuk_categories_meta->addFile($this->prefix.'image_field_id',array('name'=> __('Category Image ','karuk-products')));
-			$karuk_categories_meta->Finish();
-		}
 
 		register_taxonomy_for_object_type( 'karuk_products_category', 'products' );
 	}
