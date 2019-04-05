@@ -16,7 +16,7 @@
 .at-file-upload-label{ clear: both; margin: 5px 0px 5px 1px; }
 .at-repater-block {
     background-color: #FFFFFF;
-    border: 1px solid #DDD;
+    border: 1px solid #DDD !important;
     padding: 10px 10px 20px;
     margin: 0px;
     min-height: 50px;

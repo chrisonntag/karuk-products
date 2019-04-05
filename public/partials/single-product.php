@@ -109,40 +109,6 @@ get_header();
   </section>
 
 
-  <?php if ( $post_custom['kp_info_title_1'][0] != '' ): ?>
-  <section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="column">
-          <div class="content">
-            <h3 class="title is-4"><?php echo $post_custom['kp_info_title_1'][0]; ?></h3>
-            <p>
-              <?php echo $post_custom['kp_info_content_1'][0]; ?>
-            </p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="content">
-            <h3 class="title is-4"><?php echo $post_custom['kp_info_title_2'][0]; ?></h3>
-            <p>
-              <?php echo $post_custom['kp_info_content_2'][0]; ?>
-            </p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="content">
-            <h3 class="title is-4"><?php echo $post_custom['kp_info_title_3'][0]; ?></h3>
-            <p>
-              <?php echo $post_custom['kp_info_content_3'][0]; ?>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-	<?php endif; ?>
-
-
   <?php
   if ( array_key_exists('kp_product_files', $post_custom) ):
   ?>
@@ -163,7 +129,7 @@ get_header();
               
               foreach ($files as $file) {
                 $file_url = $file['kp_product_file_field_id']['url'];
-                $ext_re = '/[\w|\.|:|\/|-]+\/(\w+)\.(\w+)/m';
+                $ext_re = '/[\w|\.|:|\/|-]+\/([\w|\.|:|\/|-]+)\.(\w+)/m';
                 preg_match_all($ext_re, $file_url, $ext, PREG_SET_ORDER, 0);
 
                 switch ($ext[0][2]) {
@@ -197,8 +163,8 @@ get_header();
                 }
               ?>
                 <tr>
-                  <td class="level">
-                    <a href="<?php echo $file_url; ?>" title="<?php echo $file_url; ?>" class="level-left">
+                  <td class="level is-mobile">
+                    <a href="<?php echo $file_url; ?>" title="<?php echo $file_url; ?>" target="_new" class="level-left">
                       <span class="icon is-medium level-item">
                         <i class="fa fa-2x fa-<?php echo $ext_class; ?>"></i>
                       </span>
@@ -214,10 +180,10 @@ get_header();
           </table>
         </div>
         <div class="column">
-            <h4 class="title is-5"><?php echo $post_custom['kp_info_title'][0]; ?></h4>
-            <div class="content">
-              <?php echo $post_custom['kp_info_content'][0]; ?>
-            </div>
+          <h4 class="title is-5"><?php echo $post_custom['kp_info_title'][0]; ?></h4>
+          <div class="content">
+            <?php echo $post_custom['kp_info_content'][0]; ?>
+          </div>
         </div>
       </div>
     </div>
