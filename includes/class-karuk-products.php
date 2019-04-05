@@ -286,6 +286,7 @@ class Karuk_Products {
 	  }
 
 		register_taxonomy_for_object_type( 'karuk_products_category', 'products' );
+		register_taxonomy_for_object_type( 'post_tag', 'products' );
 	}
 
 	/**
