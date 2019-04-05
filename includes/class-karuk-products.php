@@ -209,6 +209,16 @@ class Karuk_Products {
 		$this->loader->add_action( 'init', $products_post_type, 'create_products' );
 
 		// Register metabox and save function when publishing the custom post-type.
+		$karuk_products_meta_config_top = array(
+	    'id'             => 'products_meta_box_top',    // meta box id, unique per meta box
+	    'title'          => 'Top Product',          				// meta box title
+	    'pages'          => array('products'),      // post types, accept custom post types as well, default is array('post'); optional
+	    'context'        => 'normal',            		// where the meta box appear: normal (default), advanced, side; optional
+	    'priority'       => 'high',            			// order of meta box: high (default), low; optional
+	    'fields'         => array(),            		// list of meta fields (can be added by field arrays)
+	    'local_images'   => false,          				// Use local or hosted images (meta box images for add/remove)
+	    'use_with_theme' => false          					//change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
+	  );
 		$karuk_products_meta_config_datasheet = array(
 	    'id'             => 'products_meta_box_datasheet',    // meta box id, unique per meta box
 	    'title'          => 'Datasheet',          				// meta box title
@@ -230,12 +240,18 @@ class Karuk_Products {
 	    'use_with_theme' => false          					//change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
 	  );
 	  if ( is_admin() ) {
+	  	// Top Product box
+	  	$karuk_products_meta_top = new AT_Meta_Box($karuk_products_meta_config_top);
+
+	  	$karuk_products_meta_top->addCheckbox($this->prefix.'top_product', array('name'=> '', 'desc' => 'Check if this product should be shown among the top products.'));
+	  	$karuk_products_meta_top->addImage($this->prefix.'top_image_field_id', array('name'=> 'Image'), false);
+
+	  	$karuk_products_meta_top->Finish();
+
 	  	// Datasheet box
 	  	$karuk_products_meta_datasheet = new AT_Meta_Box($karuk_products_meta_config_datasheet);
 
-	  	$karuk_products_meta_datasheet->addCheckbox($this->prefix.'top_product', array('name'=> 'Top Product', 'desc' => 'Check if this product should be shown among the top products.'));
-
-	  	$repeater_fields_images[] = $karuk_products_meta_datasheet->addImage($this->prefix.'product_image_field_id',array('name'=> 'Product Image'),true);
+	  	$repeater_fields_images[] = $karuk_products_meta_datasheet->addImage($this->prefix.'product_image_field_id', array('name'=> 'Product Image'), true);
 	  	$karuk_products_meta_datasheet->addRepeaterBlock($this->prefix.'product_images',array(
 		    'inline'   => true, 
 		    'name'     => 'Product Images',
