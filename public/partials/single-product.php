@@ -24,7 +24,7 @@ the_post();
     <div class="container">
       <?php if ( $category_name ): ?>
         <div class="product_link">
-          <a href="<?php echo get_category_link( $category_name->term_id ); ?>"><?php echo __('Show more ', 'karuk'); echo $category_name->name; ?></a>
+          <a href="<?php echo get_category_link( $category_name->term_id ); ?>"><?php echo __('Show more in ', 'karuk'); echo $category_name->name; ?></a>
         </div>
       <?php endif; ?>
       <?php 
@@ -191,12 +191,14 @@ the_post();
     </div>
   </section>
   <?php endif; ?>
-
+  
 
   <section class="section">
-    <div class="container has-text-centered">
-      <!-- TODO: Show real other products here that are similar to this one. -->
-      <a href="#" itemprop="isSimilarTo" class="button is-medium is-black">&Auml;hnliche Produkte</a>
+    <div class="container">
+    <h3 class="title is-4"><?php _e('Similar Products', 'karuk'); ?></h3>
+      
+      <?php karuk_similar_products(6, 'kameras', wp_get_post_tags($post->ID)); ?> 
+       
     </div>
   </section>
 </main>
