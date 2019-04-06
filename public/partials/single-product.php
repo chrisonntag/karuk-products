@@ -93,17 +93,17 @@ the_post();
            
         </div>
         <div class="column is-half">
-          <h2 class="title is-4">Technical Facts</h2>
+          <h2 class="title is-4"><?php _e('Technical Facts', 'karuk'); ?></h2>
           <?php echo $post_custom['kp_products_table'][0]; ?>
 
           <br />
 
-          <a href="<?php echo $post_custom['kp_manufacturer'][0]; ?>" class="button is-light is-small" itemprop="manufacturer" itemscope itemtype="http://schema.org/Organization">
-            <span itemprop="name">Hersteller Website</span>
+          <a href="<?php echo $post_custom['kp_manufacturer'][0]; ?>" class="button is-light is-small" itemprop="manufacturer">
+            <span><?php _e('Manufacturer', 'karuk'); ?></span>
           </a>
-          <a href="<?php echo $post_custom['kp_datasheet'][0]; ?>" class="button is-light is-small">Datenblatt</a>
+          <a href="<?php echo $post_custom['kp_datasheet'][0]; ?>" class="button is-light is-small"><?php _e('Datasheet', 'karuk'); ?></a>
           <?php if ( array_key_exists('kp_product_files', $post_custom) ): ?>
-            <a href="#downloads" class="button is-light is-small">Downloads</a>
+            <a href="#downloads" class="button is-light is-small"><?php _e('Downloads', 'karuk'); ?></a>
           <?php endif; ?>
         </div>
       </div>
@@ -191,7 +191,7 @@ the_post();
     </div>
   </section>
   <?php endif; ?>
-  
+
 
   <section class="section">
     <div class="container">
