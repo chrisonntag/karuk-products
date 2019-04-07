@@ -195,9 +195,9 @@ the_post();
 
   <section class="section">
     <div class="container">
-    <h3 class="title is-4"><?php _e('Similar Products', 'karuk'); ?></h3>
+    <h3 class="title is-4"><?php _e('Fitting Products', 'karuk'); ?></h3>
       
-      <?php karuk_similar_products(6, 'kameras', wp_get_post_tags($post->ID)); ?> 
+      <?php karuk_fitting_products(6, wp_get_post_tags($post->ID)); ?> 
        
     </div>
   </section>
