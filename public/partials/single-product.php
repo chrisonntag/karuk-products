@@ -111,9 +111,6 @@ the_post();
   </section>
 
 
-  <?php
-  if ( array_key_exists('kp_product_files', $post_custom) ):
-  ?>
   <section id="downloads" class="section">
     <div class="container">
       <div class="columns">
@@ -122,7 +119,7 @@ the_post();
           <table class="table is-hoverable is-fullwidth">
             <thead>
               <tr>
-                <td>Datei</td>
+                <td><?php _e('File', 'karuk-products') ?></td>
               </tr>
             </thead>
             <tbody>
@@ -182,7 +179,7 @@ the_post();
           </table>
         </div>
         <div class="column">
-          <h4 class="title is-5"><?php echo $post_custom['kp_info_title'][0]; ?></h4>
+          <h4 class="title is-5"><?php echo $post_custom['kp_info_title'][0]; ?>  </h4>
           <div class="content">
             <?php echo $post_custom['kp_info_content'][0]; ?>
           </div>
@@ -190,7 +187,6 @@ the_post();
       </div>
     </div>
   </section>
-  <?php endif; ?>
 
 
   <section class="section">

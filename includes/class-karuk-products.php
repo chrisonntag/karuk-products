@@ -86,6 +86,7 @@ class Karuk_Products {
 		$this->plugin_name = 'karuk-products';
 		$this->prefix = 'kp_';
 
+		// Used for a default value in WYSIWYG boxes.
 		$this->html_table = '<table class="table is-fullwidth is-hoverable"><tbody><tr><td>Feature</td><td>Name</td></tr><tr><td></td><td></td></tr></tbody></table>';
 
 		$this->load_dependencies();
@@ -137,14 +138,9 @@ class Karuk_Products {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-karuk-products-public.php';
 
 		/**
-		 * Custom Taxonomy meta box
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Tax-meta-class/Tax-meta-class.php';
-
-		/**
 		 * Custom post type meta box
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/meta-box-class/my-meta-box-class.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/meta-box-class/custom-meta-box-class.php';
 
 		/**
 		 * The class responsible for defining the product post type.
@@ -165,6 +161,11 @@ class Karuk_Products {
 		 * Used in order to store further information within the custom post type.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-karuk-products-metabox-info.php';
+
+		/**
+		 * The class registering a custom widget for the product categories.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/widgets/class-karuk-categories-menu-widget.php';
 
 		$this->loader = new Karuk_Products_Loader();
 
@@ -211,7 +212,7 @@ class Karuk_Products {
 		// Register metabox and save function when publishing the custom post-type.
 		$karuk_products_meta_config_top = array(
 	    'id'             => 'products_meta_box_top',    // meta box id, unique per meta box
-	    'title'          => 'Top Product',          				// meta box title
+	    'title'          => 'Meta',          				// meta box title
 	    'pages'          => array('products'),      // post types, accept custom post types as well, default is array('post'); optional
 	    'context'        => 'normal',            		// where the meta box appear: normal (default), advanced, side; optional
 	    'priority'       => 'high',            			// order of meta box: high (default), low; optional
@@ -245,6 +246,8 @@ class Karuk_Products {
 
 	  	$karuk_products_meta_top->addCheckbox($this->prefix.'top_product', array('name'=> '', 'desc' => 'Check if this product should be shown among the top products.'));
 	  	$karuk_products_meta_top->addImage($this->prefix.'top_image_field_id', array('name'=> 'Image'), false);
+	  	$karuk_products_meta_top->addCheckbox($this->prefix.'menu_product', array('name'=> '', 'desc' => 'Check if this product should be shown in the menu.'));
+	  	$karuk_products_meta_top->addImage($this->prefix.'menu_image_field_id', array('name'=> 'Image'), false);
 
 	  	$karuk_products_meta_top->Finish();
 
@@ -305,6 +308,8 @@ class Karuk_Products {
 
 		// Register custom templates for post-type.
 		$this->loader->add_filter( 'single_template', $plugin_public, 'load_products_template');
+
+		$categories_widget = new Karuk_Categories_Menu_Widget();
 
 	}
 

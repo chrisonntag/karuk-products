@@ -119,7 +119,7 @@ var _metabox_fields = {
         tabMode: "shift"
       });
       editor.setOption("theme", theme);
-      $(editor.getScrollerElement()).width(100); // set this low enough
+      $(editor.getScrollerElement()).width(200); // set this low enough
       width = $(editor.getScrollerElement()).parent().width();
       $(editor.getScrollerElement()).width(width); // set it to
       editor.refresh();
