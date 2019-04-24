@@ -14,13 +14,12 @@
 						text-shadow: rgba(255, 255, 255, 1) 0 1px 0; width: auto; }
 .at-radio-label{ padding-right: 10px; }
 .at-file-upload-label{ clear: both; margin: 5px 0px 5px 1px; }
-.at-repater-block {
+.at-repeater-block {
     background-color: #FFFFFF;
     border: 1px solid #DDD !important;
-    padding: 10px 10px 20px;
+    padding: 0px;
     margin: 0px;
     min-height: 50px;
-    width: 300px;
     float: left;
     font: 20px/31px "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -74,8 +73,9 @@ table.repeater-table{ width:100%; }
 	background-color: #fff;
 }
 
-td.at-field .simplePanelImagePreview img{
+td.at-field .simplePanelImagePreview img {
   max-width: 100% !important;
+  width: 50%;
   height: auto;
 }
 

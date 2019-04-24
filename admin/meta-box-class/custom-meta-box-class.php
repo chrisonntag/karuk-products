@@ -388,7 +388,7 @@ class AT_Meta_Box {
            $mmm =  isset($me[$field['fields'][0]['id']])? $me[$field['fields'][0]['id']]: "";
            if ( in_array( $field['fields'][0]['type'], array('image','file') ) )
             $mmm = $c +1 ;
-           echo '<div class="at-repater-block">'.$mmm.'<br/><table class="repeater-table" style="display: none;">';
+           echo '<div class="at-repater-block"><table class="repeater-table">';
            if ($field['inline']){
              echo '<tr class="at-inline" VALIGN="top">';
            }
@@ -417,8 +417,8 @@ class AT_Meta_Box {
         if ($field['sortable'])
           echo '<span class="re-control"><img src="'.$plugin_path.'/images/move.png" alt="sort" title="sort" class="at_re_sort_handle" /></span>';
 
+        //echo '<span class="re-control at-re-toggle"><img src="'.$plugin_path.'/images/edit.png" alt="Edit" title="Edit"/></span>';
         echo'
-        <span class="re-control at-re-toggle"><img src="'.$plugin_path.'/images/edit.png" alt="Edit" title="Edit"/></span>
         <span class="re-control"><img src="'.$plugin_path.'/images/remove.png" alt="'.__('Remove','mmb').'" title="'.__('Remove','mmb').'" id="remove-'.$field['id'].'"></span>
         <span class="re-control-clear"></span></div>';
         $c = $c + 1;
@@ -491,7 +491,7 @@ class AT_Meta_Box {
 .at-inline .at-label{margin: 0 0 1px !important;}
 .at-inline .at-text{width: 70px;}
 .at-inline .at-textarea{width: 100px; height: 75px;}
-.at-repater-block{background-color: #FFFFFF;border: 1px solid;margin: 2px; min-height: 50px}
+.at-repater-block{background-color: transparent;border: 1px solid #DDD;margin: 2px; min-height: 50px}
 </style>';
     $this->show_field_end($field, $meta);
   }
