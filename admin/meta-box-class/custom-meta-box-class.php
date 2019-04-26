@@ -388,7 +388,7 @@ class AT_Meta_Box {
            $mmm =  isset($me[$field['fields'][0]['id']])? $me[$field['fields'][0]['id']]: "";
            if ( in_array( $field['fields'][0]['type'], array('image','file') ) )
             $mmm = $c +1 ;
-           echo '<div class="at-repater-block"><table class="repeater-table">';
+           echo '<div class="at-repeater-block"><table class="repeater-table">';
            if ($field['inline']){
              echo '<tr class="at-inline" VALIGN="top">';
            }
@@ -435,7 +435,7 @@ class AT_Meta_Box {
 
     //create all fields once more for js function and catch with object buffer
     ob_start();
-    echo '<div class="at-repater-block"><table class="repeater-table">';
+    echo '<div class="at-repeater-block"><table class="repeater-table">';
     if ($field['inline']){
       echo '<tr class="at-inline" VALIGN="top">';
     }
@@ -482,7 +482,7 @@ class AT_Meta_Box {
           });
         </script>';
     echo '<br/><style>
-.at_re_sort_highlight{min-height: 55px; background-color: #EEEEEE; margin: 2px;}
+.at_re_sort_highlight{min-height: 300px; width: 200px; background-color: #EEEEEE; margin: 2px; float: left;}
 .re-control-clear{clear: both; display: block;}
 .at_re_sort_handle{cursor: move;}
 .re-control{float: left; padding: 5px; margin: -12px 0 0 12px;cursor: pointer;}
@@ -491,7 +491,7 @@ class AT_Meta_Box {
 .at-inline .at-label{margin: 0 0 1px !important;}
 .at-inline .at-text{width: 70px;}
 .at-inline .at-textarea{width: 100px; height: 75px;}
-.at-repater-block{background-color: transparent;border: 1px solid #DDD;margin: 2px; min-height: 50px}
+.at-repeater-block{background-color: transparent;border: 1px solid #DDD;margin: 2px; min-height: 50px}
 </style>';
     $this->show_field_end($field, $meta);
   }
@@ -723,9 +723,44 @@ class AT_Meta_Box {
     $type     = (is_array($type)? implode("|",$type) : $type);
     $ext      = (is_array($ext)? implode("|",$ext) : $ext);
     $id       = $field['id'];
-    $li       = ($has_file)? "<li><a href='{$value['url']}' target='_blank'>{$value['url']}</a></li>": "";
+    $filename = basename( get_attached_file( $meta['id'] ) );
+    $li       = ($has_file)? "<li style='text-align: center;'><a style='word-break: break-all;' href='{$value['url']}' target='_blank'>{$filename}</a></li>": "";
 
-    echo "<span class='simplePanelfilePreview'><ul>{$li}</ul></span>";
+    $ext_re = '/[\w|\.|:|\/|-]+\/([\w|\.|:|\/|-]+)\.(\w+)/m';
+    preg_match_all($ext_re, $value['url'], $extension, PREG_SET_ORDER, 0);
+
+    switch ($extension[0][2]) {
+      case 'pdf':
+        $ext_class = "file-pdf";
+        break;
+      case 'zip':
+      case 'tar':
+        $ext_class = "file-archive";
+        break;
+      case 'xlsx':
+      case 'xls':
+        $ext_class = "file-excel";
+        break;
+      case 'docx':
+      case 'doc':
+        $ext_class = "file-word";
+        break;
+      case 'mp4':
+      case 'mov':
+        $ext_class = "file-video";
+        break;
+      case 'jpg':
+      case 'jpeg':
+      case 'png':
+        $ext_class = "file-image";
+        break;
+      default:
+        $ext_class = "file";
+        break;
+    }
+
+    echo "<p class='icon'><i class='fa fa-3x fa-{$ext_class}'></i></p>";
+    echo "<span class='simplePanelfilePreview'><ul style='margin-bottom: 2.5em;'>{$li}</ul></span>";
     echo "<input type='hidden' name='{$name}[id]' value='{$value['id']}'/>";
     echo "<input type='hidden' name='{$name}[url]' value='{$value['url']}'/>";
     if ($has_file)
@@ -757,12 +792,13 @@ class AT_Meta_Box {
     $has_image    = empty($value['url'])? false : true;
     $w            = isset($field['width'])? $field['width'] : 'auto';
     $h            = isset($field['height'])? $field['height'] : 'auto';
-    $PreviewStyle = "style='width: $w; height: $h;". ( (!$has_image)? "display: none;'": "'");
+    $PreviewStyle = "style='width: $w; height: $h;". ( (!$has_image)? "display: table;'": "'");
     $id           = $field['id'];
     $multiple     = isset($field['multiple'])? $field['multiple'] : false;
     $multiple     = ($multiple)? "multiFile " : "";
+    $image_url    = $value['url'] != '' ? $value['url'] : 'https://via.placeholder.com/150x150';
 
-    echo "<span class='simplePanelImagePreview'><img {$PreviewStyle} src='{$value['url']}'><br/></span>";
+    echo "<span class='simplePanelImagePreview'><img {$PreviewStyle} src='{$image_url}'><br/></span>";
     echo "<input type='hidden' name='{$name}[id]' value='{$value['id']}'/>";
     echo "<input type='hidden' name='{$name}[url]' value='{$value['url']}'/>";
     if ($has_image)

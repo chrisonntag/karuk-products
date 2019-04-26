@@ -75,6 +75,7 @@ class Karuk_Products_Admin {
 
 		wp_enqueue_style( $this->plugin_name.'_main', plugin_dir_url( __FILE__ ) . 'css/karuk-products-admin.css', array(), $this->version, 'all' );
 		//wp_enqueue_style( $this->plugin_name.'_tax_meta', plugin_dir_url( __FILE__ ) . 'Tax-meta-class/css/Tax-meta-class.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name.'_font_awesome', 'https://use.fontawesome.com/releases/v5.8.1/css/all.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name.'_meta_box', plugin_dir_url( __FILE__ ) . 'meta-box-class/css/meta-box.css', array(), $this->version, 'all' );
 
 	}

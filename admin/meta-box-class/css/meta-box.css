@@ -19,13 +19,14 @@
     border: 1px solid #DDD !important;
     padding: 0px;
     margin: 0px;
-    min-height: 50px;
+    height: 300px;
+    width: 200px; 
     float: left;
     font: 20px/31px "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
+.icon { text-align: center; }
 table.repeater-table{ width:100%; }
-
+.repeater-sortable { vertical-align: top; }
 
 
 /* =Form Fields

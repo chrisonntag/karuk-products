@@ -48,7 +48,7 @@ var _metabox_fields = {
     // repeater sortable
     $('.repeater-sortable').sortable({
       opacity: 0.6,
-      revert: true,
+      revert: false,
       cursor: 'move',
       handle: '.at_re_sort_handle',
       placeholder: 'at_re_sort_highlight'
