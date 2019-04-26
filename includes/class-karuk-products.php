@@ -222,7 +222,7 @@ class Karuk_Products {
 	  );
 		$karuk_products_meta_config_datasheet = array(
 	    'id'             => 'products_meta_box_datasheet',    // meta box id, unique per meta box
-	    'title'          => 'Datasheet',          				// meta box title
+	    'title'          => 'Datasheet Section',          				// meta box title
 	    'pages'          => array('products'),      // post types, accept custom post types as well, default is array('post'); optional
 	    'context'        => 'normal',            		// where the meta box appear: normal (default), advanced, side; optional
 	    'priority'       => 'high',            			// order of meta box: high (default), low; optional
@@ -232,7 +232,7 @@ class Karuk_Products {
 	  );
 	  $karuk_products_meta_config_info = array(
 	    'id'             => 'products_meta_box_info',    // meta box id, unique per meta box
-	    'title'          => 'Info',          				// meta box title
+	    'title'          => 'Info Section',          				// meta box title
 	    'pages'          => array('products'),      // post types, accept custom post types as well, default is array('post'); optional
 	    'context'        => 'normal',            		// where the meta box appear: normal (default), advanced, side; optional
 	    'priority'       => 'high',            			// order of meta box: high (default), low; optional
@@ -244,7 +244,7 @@ class Karuk_Products {
 	  	// Top Product box
 	  	$karuk_products_meta_top = new AT_Meta_Box($karuk_products_meta_config_top);
 
-	  	$karuk_products_meta_top->addCheckbox($this->prefix.'top_product', array('name'=> '', 'desc' => 'Check if this product should be shown among the top products.'));
+	  	$karuk_products_meta_top->addCheckbox($this->prefix.'top_product', array('name'=> 'Top Product', 'desc' => 'Check if this product should be shown among the top products.'));
 	  	$karuk_products_meta_top->addImage($this->prefix.'top_image_field_id', array('name'=> 'Image'), false);
 	  	$karuk_products_meta_top->addImage($this->prefix.'menu_image_field_id', array('name'=> 'Menu Image', 'desc' => 'This image will be shown when the product is selected to be in the navigation.'), false);
 
@@ -274,7 +274,7 @@ class Karuk_Products {
 	  	//Info box
 	  	$karuk_products_meta_info = new AT_Meta_Box($karuk_products_meta_config_info);
 
-	  	$repeater_fields_downloads[] = $karuk_products_meta_info->addFile($this->prefix.'product_file_field_id',array('name'=> 'File'),true);
+	  	$repeater_fields_downloads[] = $karuk_products_meta_info->addFile($this->prefix.'product_file_field_id',array('name'=> ''),true);
 	  	$karuk_products_meta_info->addRepeaterBlock($this->prefix.'product_files', array(
 		    'inline'   => true, 
 		    'name'     => 'Files',

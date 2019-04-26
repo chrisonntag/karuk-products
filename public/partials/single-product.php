@@ -102,9 +102,6 @@ the_post();
             <span><?php _e('Manufacturer', 'karuk'); ?></span>
           </a>
           <a href="<?php echo $post_custom['kp_datasheet'][0]; ?>" class="button is-light is-small"><?php _e('Datasheet', 'karuk'); ?></a>
-          <?php if ( array_key_exists('kp_product_files', $post_custom) ): ?>
-            <a href="#downloads" class="button is-light is-small"><?php _e('Downloads', 'karuk'); ?></a>
-          <?php endif; ?>
         </div>
       </div>
     </div>

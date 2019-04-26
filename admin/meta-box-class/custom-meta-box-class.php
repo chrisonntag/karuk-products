@@ -419,13 +419,13 @@ class AT_Meta_Box {
 
         //echo '<span class="re-control at-re-toggle"><img src="'.$plugin_path.'/images/edit.png" alt="Edit" title="Edit"/></span>';
         echo'
-        <span class="re-control"><img src="'.$plugin_path.'/images/remove.png" alt="'.__('Remove','mmb').'" title="'.__('Remove','mmb').'" id="remove-'.$field['id'].'"></span>
+        <span class="re-control"><img style="cursor: pointer;" src="'.$plugin_path.'/images/remove.png" alt="'.__('Remove','mmb').'" title="'.__('Remove','mmb').'" id="remove-'.$field['id'].'"></span>
         <span class="re-control-clear"></span></div>';
         $c = $c + 1;
         }
       }
 
-    echo '<img src="';
+    echo '<img style="margin: 12px; cursor: pointer;" src="';
     if ($this->_Local_images){
       echo $plugin_path.'/images/add.png';
     }else{
@@ -458,7 +458,7 @@ class AT_Meta_Box {
     if ($field['inline']){
       echo '</tr>';
     }
-    echo '</table><img src="'.$plugin_path.'/images/remove.png" alt="'.__('Remove','mmb').'" title="'.__('Remove','mmb').'" id="remove-'.$field['id'].'"></div>';
+    echo '</table><img src="'.$plugin_path.'/images/remove.png" style="margin: 12px; cursor: pointer;" alt="'.__('Remove','mmb').'" title="'.__('Remove','mmb').'" id="remove-'.$field['id'].'"></div>';
     $counter = 'countadd_'.$field['id'];
     $js_code = ob_get_clean ();
     $js_code = str_replace("\n","",$js_code);
@@ -485,7 +485,7 @@ class AT_Meta_Box {
 .at_re_sort_highlight{min-height: 55px; background-color: #EEEEEE; margin: 2px;}
 .re-control-clear{clear: both; display: block;}
 .at_re_sort_handle{cursor: move;}
-.re-control{float: right; padding: 5px;}
+.re-control{float: left; padding: 5px; margin: -12px 0 0 12px;cursor: pointer;}
 .at-inline{line-height: 1 !important;}
 .at-inline .at-field{border: 0px !important;}
 .at-inline .at-label{margin: 0 0 1px !important;}
