@@ -186,7 +186,7 @@ the_post();
   </section>
 
 
-  <section class="section">
+  <section class="section" id="fitting_products">
     <div class="container">
     <h3 class="title is-4"><?php _e('Fitting Products', 'karuk'); ?></h3>
       
