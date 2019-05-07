@@ -796,7 +796,7 @@ class AT_Meta_Box {
     $id           = $field['id'];
     $multiple     = isset($field['multiple'])? $field['multiple'] : false;
     $multiple     = ($multiple)? "multiFile " : "";
-    $image_url    = $value['url'] != '' ? $value['url'] : 'https://via.placeholder.com/150x150';
+    $image_url    = $value['url'] != '' ? $value['url'] : $plugin_path.'/images/image_placeholder.png';
 
     echo "<span class='simplePanelImagePreview'><img {$PreviewStyle} src='{$image_url}'><br/></span>";
     echo "<input type='hidden' name='{$name}[id]' value='{$value['id']}'/>";
