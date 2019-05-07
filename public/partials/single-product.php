@@ -108,9 +108,13 @@ the_post();
   </section>
 
 
+  <?php 
+  $files = get_post_meta(get_the_ID(), 'kp_product_files', true); 
+  ?>
   <section id="downloads" class="section">
     <div class="container">
       <div class="columns">
+        <?php if ($files != ''): ?>
         <div class="column">
           <h4 class="title is-5">Downloads</h4>
           <table class="table is-hoverable is-fullwidth">
@@ -121,8 +125,6 @@ the_post();
             </thead>
             <tbody>
               <?php 
-              $files = get_post_meta(get_the_ID(), 'kp_product_files', true);
-              
               foreach ($files as $file) {
                 $file_url = $file['kp_product_file_field_id']['url'];
                 $ext_re = '/[\w|\.|:|\/|-]+\/([\w|\.|:|\/|-]+)\.(\w+)/m';
@@ -175,6 +177,7 @@ the_post();
             </tbody>
           </table>
         </div>
+        <?php endif; ?>
         <div class="column">
           <h4 class="title is-5"><?php echo $post_custom['kp_info_title'][0]; ?>  </h4>
           <div class="content">
