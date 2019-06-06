@@ -782,6 +782,7 @@ class AT_Meta_Box {
   public function show_field_image( $field, $meta ) {
     wp_enqueue_media();
     $this->show_field_begin( $field, $meta );
+    $plugin_path  = $this->SelfPath;
 
     $std          = isset($field['std'])? $field['std'] : array('id' => '', 'url' => '');
     $name         = esc_attr( $field['id'] );
@@ -792,11 +793,12 @@ class AT_Meta_Box {
     $has_image    = empty($value['url'])? false : true;
     $w            = isset($field['width'])? $field['width'] : 'auto';
     $h            = isset($field['height'])? $field['height'] : 'auto';
+    $format       = isset($field['format'])? $field['format'] : '16_9';
     $PreviewStyle = "style='width: $w; height: $h;". ( (!$has_image)? "display: table;'": "'");
     $id           = $field['id'];
     $multiple     = isset($field['multiple'])? $field['multiple'] : false;
     $multiple     = ($multiple)? "multiFile " : "";
-    $image_url    = $value['url'] != '' ? $value['url'] : $plugin_path.'/images/image_placeholder.png';
+    $image_url    = $value['url'] != '' ? $value['url'] : $plugin_path.'/images/'.$format.'.png';
 
     echo "<span class='simplePanelImagePreview'><img {$PreviewStyle} src='{$image_url}'><br/></span>";
     echo "<input type='hidden' name='{$name}[id]' value='{$value['id']}'/>";

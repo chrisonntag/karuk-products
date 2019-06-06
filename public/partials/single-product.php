@@ -31,7 +31,12 @@ the_post();
       if ( has_post_thumbnail() ):
       ?>
         <figure class="image is-3by1 is-fullwidth">
-          <img itemprop="image" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Big Image" />
+          <?php if (get_the_post_thumbnail_url() == '') {
+            $thumbnail_url = plugins_url( '../img/3_1_big.png', __FILE__ );
+          } else {
+            $thumbnail_url = get_the_post_thumbnail_url();
+          } ?>
+          <img itemprop="image" src="<?php echo $thumbnail_url; ?>" alt="<?php the_title(); ?>" />
         </figure>
       <?php endif; ?>
     </div>
@@ -81,7 +86,12 @@ the_post();
                 <li>
                   <figure class="image is-1by1">
                     <a href="#">
-                      <img src="<?php echo $image['kp_product_image_field_id']['url']; ?>" alt="Product Image" />
+                      <?php if ($image['kp_product_image_field_id']['url'] == '') {
+                        $product_image = plugins_url( '../img/1_1_big.png', __FILE__ );
+                      } else {
+                        $product_image = $image['kp_product_image_field_id']['url'];
+                      } ?>
+                      <img src="<?php echo $product_image; ?>" alt="Product Image" />
                     </a>
                   </figure>
                 </li>
