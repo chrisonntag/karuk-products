@@ -108,10 +108,10 @@ the_post();
 
           <br />
 
-          <a href="<?php echo $post_custom['kp_manufacturer'][0]; ?>" class="button is-light is-small" itemprop="manufacturer">
+          <a target="_blank" href="<?php echo $post_custom['kp_manufacturer'][0]; ?>" class="button is-light is-small" itemprop="manufacturer">
             <span><?php _e('Manufacturer', 'karuk'); ?></span>
           </a>
-          <a href="<?php echo $post_custom['kp_datasheet'][0]; ?>" class="button is-light is-small"><?php _e('Datasheet', 'karuk'); ?></a>
+          <a target="_blank" href="<?php echo $post_custom['kp_datasheet'][0]; ?>" class="button is-light is-small"><?php _e('Datasheet', 'karuk'); ?></a>
         </div>
       </div>
     </div>
