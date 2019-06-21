@@ -44,6 +44,7 @@ class Karuk_Products_Post_Type {
 					'menu_name'     => __('Products', 'karuk-products'),
 				),
 				'public' => true,
+				'publicly_queryable' => true,
 				'menu_position' => 30,
 				'show_in_nav_menus' => true,
 				'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
