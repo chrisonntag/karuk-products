@@ -85,7 +85,7 @@ the_post();
             ?>
                 <li>
                   <figure class="image is-1by1">
-                    <a href="#">
+                    <a href="#" style="cursor: ew-resize;">
                       <?php if ($image['kp_product_image_field_id']['url'] == '') {
                         $product_image = plugins_url( '../img/1_1_big.png', __FILE__ );
                       } else {
