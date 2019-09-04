@@ -245,6 +245,7 @@ class Karuk_Products {
 	  	$karuk_products_meta_top = new AT_Meta_Box($karuk_products_meta_config_top);
 
 	  	$karuk_products_meta_top->addCheckbox($this->prefix.'top_product', array('name'=> 'Top Product', 'desc' => 'Check if this product should be shown among the top products.'));
+	  	$karuk_products_meta_top->addCheckbox($this->prefix.'not_featured', array('name'=> 'Hidden', 'desc' => 'Check if this product should be hidden on the start site.'));
 	  	$karuk_products_meta_top->addImage($this->prefix.'top_image_field_id', array('name'=> 'Image', 'format' => '16_9'), false);
 	  	$karuk_products_meta_top->addImage($this->prefix.'menu_image_field_id', array('name'=> 'Menu Image', 'desc' => 'This image will be shown when the product is selected to be in the navigation.', 'format' => '16_9'), false);
 

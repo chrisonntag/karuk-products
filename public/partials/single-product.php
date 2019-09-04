@@ -32,11 +32,11 @@ the_post();
       ?>
         <figure class="image is-3by1 is-fullwidth">
           <?php if (get_the_post_thumbnail_url() == '') {
-            $thumbnail_url = plugins_url( '../img/3_1_big.png', __FILE__ );
+            $thumbnail_url = get_template_directory_uri() . '/img/3_1_big.png';
           } else {
             $thumbnail_url = get_the_post_thumbnail_url();
           } ?>
-          <img itemprop="image" src="<?php echo $thumbnail_url; ?>" alt="<?php the_title(); ?>" />
+          <img itemprop="image" src="<?php echo $thumbnail_url; ?>" alt="<?php the_title(); ?> | <?php echo get_bloginfo('name'); ?>" title="<?php the_title(); ?> | <?php echo get_bloginfo('name'); ?>" />
         </figure>
       <?php endif; ?>
     </div>
@@ -87,16 +87,19 @@ the_post();
                   <figure class="image is-1by1">
                     <a href="#" style="cursor: ew-resize;">
                       <?php if ($image['kp_product_image_field_id']['url'] == '') {
-                        $product_image = plugins_url( '../img/1_1_big.png', __FILE__ );
+                        $product_image = get_template_directory_uri() . '/img/1_1_big.png';
                       } else {
                         $product_image = $image['kp_product_image_field_id']['url'];
                       } ?>
-                      <img src="<?php echo $product_image; ?>" alt="Product Image" />
+                      <img src="<?php echo $product_image; ?>" alt="<?php the_title(); ?> | <?php echo get_bloginfo('name'); ?>" title="<?php the_title(); ?> | <?php echo get_bloginfo('name'); ?>" />
                     </a>
                   </figure>
                 </li>
             <?php
                 }
+              } else {
+                $blog_name = get_bloginfo('name');
+                echo '<img src="'. get_template_directory_uri() . '/img/1_1_big.png' .'" alt="'. $blog_name .'" />';
               }
             ?>
           </ul>
@@ -105,8 +108,6 @@ the_post();
         <div class="column is-half">
           <h2 class="title is-4"><?php _e('Technical Facts', 'karuk'); ?></h2>
           <?php echo $post_custom['kp_products_table'][0]; ?>
-
-          <br />
 
           <a target="_blank" href="<?php echo $post_custom['kp_manufacturer'][0]; ?>" class="button is-light is-small" itemprop="manufacturer">
             <span><?php _e('Manufacturer', 'karuk'); ?></span>
@@ -201,7 +202,6 @@ the_post();
 
   <section class="section" id="fitting_products">
     <div class="container">
-    <h3 class="title is-4"><?php _e('Fitting Products', 'karuk'); ?></h3>
       
       <?php karuk_fitting_products(6, wp_get_post_tags($post->ID)); ?> 
        
