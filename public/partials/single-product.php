@@ -55,7 +55,7 @@ the_post();
               $tags = wp_get_post_tags($post->ID);
               foreach ($tags as $tag) {
                 $tag = $tag->to_array();
-                echo '<a href="'. get_tag_link($tag['term_id']) .'"><span class="tag is-light">#'. $tag['name'] .'</span></a>';
+                echo '<a href="/?sentence=0&s='. $tag['name'] .'"><span class="tag is-light">#'. $tag['name'] .'</span></a>';
               }
             ?>
           </div>
