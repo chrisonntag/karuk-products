@@ -33,9 +33,12 @@ class Karuk_Products_i18n {
 	 * @since    1.0.0
 	 */
 	public function load_plugin_textdomain() {
+		$domain = 'karuk-products';
+		$mo_file = WP_LANG_DIR . '/plugins/' . $domain . '-' . get_locale() . '.mo';
+		load_textdomain( $domain, $mo_file ); 
 
 		load_plugin_textdomain(
-			'karuk-products',
+			$domain,
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
