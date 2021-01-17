@@ -3,157 +3,260 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Karuk Theme\n"
+"POT-Creation-Date: 2021-01-17 13:23+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Christoph Sonntag <info@chrisonntag.com>\n"
+"Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
+"_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;"
+"esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.2.4\n"
-"Last-Translator: \n"
-"Language: de\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: ../includes/class-karuk-products-categories-taxonomy.php:34
-msgid "Product Category"
-msgstr "Produktkategorie"
+#: admin/class-karuk-products-admin.php:136
+msgid "Settings"
+msgstr "Einstellungen"
 
-#: ../includes/class-karuk-products-categories-taxonomy.php:35
-msgid "Add category"
-msgstr "Kategorie hinzufügen"
+#: admin/meta-box-class/custom-meta-box-class.php:422
+#: admin/meta-box-class/custom-meta-box-class.php:461
+msgid "Remove"
+msgstr "Entfernen"
 
-#: ../includes/class-karuk-products-categories-taxonomy.php:36
-msgid "New category"
-msgstr "Neue Kategorie"
-
-#: ../includes/class-karuk-products-categories-taxonomy.php:37
-msgid "Product Categories"
-msgstr "Produktkategorien"
-
-#: ../includes/class-karuk-products-metabox-info.php:50
-msgid "Info title 1"
-msgstr "Infobox 1 Titel"
-
-#: ../includes/class-karuk-products-metabox-info.php:57
-msgid "Info content 1"
-msgstr "Infobox 1 Inhalt"
-
-#: ../includes/class-karuk-products-metabox-info.php:64
-msgid "Info title 2"
-msgstr "Infobox 2 Titel"
-
-#: ../includes/class-karuk-products-metabox-info.php:71
-msgid "Info content 2"
-msgstr "Infobox 2 Inhalt"
-
-#: ../includes/class-karuk-products-metabox-info.php:78
-msgid "Info title 3"
-msgstr "Infobox 3 Titel"
-
-#: ../includes/class-karuk-products-metabox-info.php:85
-msgid "Info content 3"
-msgstr "Infobox 3 Inhalt"
-
-#: ../includes/class-karuk-products-metabox-info.php:102
-msgid "Info"
-msgstr "Infobox"
-
-#: ../includes/class-karuk-products-metabox-main.php:47
-msgid "Subtitle"
-msgstr "Untertitel"
-
-#: ../includes/class-karuk-products-metabox-main.php:54
-msgid "Manufacturer Link"
-msgstr "Hersteller Link"
-
-#: ../includes/class-karuk-products-metabox-main.php:61
-msgid "Data Sheet Link"
-msgstr "Datenblatt Link"
-
-#: ../includes/class-karuk-products-metabox-main.php:78,
-#: ../public/partials/single-product.php:115
-msgid "Datasheet"
-msgstr "Datenblatt"
-
-#: ../includes/class-karuk-products-post-type.php:32,
-#: ../includes/class-karuk-products-post-type.php:44
-msgid "Products"
-msgstr "Produkte"
-
-#: ../includes/class-karuk-products-post-type.php:33,
-#: ../public/partials/single-product.php:4
-msgid "Product"
-msgstr "Produkt"
-
-#: ../includes/class-karuk-products-post-type.php:34
+#: admin/meta-box-class/custom-meta-box-class.php:434
+#: includes/class-karuk-products-post-type.php:34
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: ../includes/class-karuk-products-post-type.php:35
+#: admin/meta-box-class/custom-meta-box-class.php:831
+msgid "Select a color"
+msgstr "Farbe auswählen"
+
+#: admin/meta-box-class/custom-meta-box-class.php:919
+msgid "Select ..."
+msgstr "Auswählen …"
+
+#: admin/meta-box-class/custom-meta-box-class.php:1875
+#: admin/meta-box-class/custom-meta-box-class.php:1883
+msgid "Sorry, you cannot upload this file type for this field."
+msgstr "Dieser Dateityp wird leider nicht akzeptiert."
+
+#: includes/class-karuk-products-categories-taxonomy.php:34
+msgid "Product Category"
+msgstr "Produktkategorie"
+
+#: includes/class-karuk-products-categories-taxonomy.php:35
+msgid "Add category"
+msgstr "Kategorie hinzufügen"
+
+#: includes/class-karuk-products-categories-taxonomy.php:36
+msgid "New category"
+msgstr "Neue Kategorie"
+
+#: includes/class-karuk-products-categories-taxonomy.php:37
+msgid "Product Categories"
+msgstr "Produktkategorien"
+
+#: includes/class-karuk-products-metabox-info.php:50
+msgid "Info title 1"
+msgstr "Infobox 1 Titel"
+
+#: includes/class-karuk-products-metabox-info.php:57
+msgid "Info content 1"
+msgstr "Infobox 1 Inhalt"
+
+#: includes/class-karuk-products-metabox-info.php:64
+msgid "Info title 2"
+msgstr "Infobox 2 Titel"
+
+#: includes/class-karuk-products-metabox-info.php:71
+msgid "Info content 2"
+msgstr "Infobox 2 Inhalt"
+
+#: includes/class-karuk-products-metabox-info.php:78
+msgid "Info title 3"
+msgstr "Infobox 3 Titel"
+
+#: includes/class-karuk-products-metabox-info.php:85
+msgid "Info content 3"
+msgstr "Infobox 3 Inhalt"
+
+#: includes/class-karuk-products-metabox-info.php:102
+msgid "Info"
+msgstr "Infobox"
+
+#: includes/class-karuk-products-metabox-info.php:179
+msgid ""
+"Enter title and content for the information boxes here. They accept HTML "
+"code as well."
+msgstr ""
+"Titel und Inhalt der Informations-Boxen hier einfügen. HTML Code wird "
+"ebenfalls akzeptiert."
+
+#: includes/class-karuk-products-metabox-main.php:47
+msgid "Subtitle"
+msgstr "Untertitel"
+
+#: includes/class-karuk-products-metabox-main.php:54
+#: includes/class-karuk-products.php:293
+msgid "Manufacturer Link"
+msgstr "Hersteller Link"
+
+#: includes/class-karuk-products-metabox-main.php:61
+msgid "Data Sheet Link"
+msgstr "Datenblatt Link"
+
+#: includes/class-karuk-products-metabox-main.php:78
+#: public/partials/single-product.php:115
+msgid "Datasheet"
+msgstr "Datenblatt"
+
+#: includes/class-karuk-products-post-type.php:32
+#: includes/class-karuk-products-post-type.php:44
+msgid "Products"
+msgstr "Produkte"
+
+#: includes/class-karuk-products-post-type.php:33
+msgid "Product"
+msgstr "Produkt"
+
+#: includes/class-karuk-products-post-type.php:35
 msgid "Add new product"
 msgstr "Neues Produkt hinzufügen"
 
-#: ../includes/class-karuk-products-post-type.php:36
+#: includes/class-karuk-products-post-type.php:36
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../includes/class-karuk-products-post-type.php:37
+#: includes/class-karuk-products-post-type.php:37
 msgid "Edit product"
 msgstr "Produkt bearbeiten"
 
-#: ../includes/class-karuk-products-post-type.php:38
+#: includes/class-karuk-products-post-type.php:38
 msgid "New product"
 msgstr "Neues Produkt"
 
-#: ../includes/class-karuk-products-post-type.php:39
+#: includes/class-karuk-products-post-type.php:39
 msgid "View"
 msgstr "Anzeigen"
 
-#: ../includes/class-karuk-products-post-type.php:40
+#: includes/class-karuk-products-post-type.php:40
 msgid "View product"
 msgstr "Produkt anzeigen"
 
-#: ../includes/class-karuk-products-post-type.php:41
+#: includes/class-karuk-products-post-type.php:41
 msgid "Search products"
 msgstr "Produkte suchen"
 
-#: ../includes/class-karuk-products-post-type.php:42
+#: includes/class-karuk-products-post-type.php:42
 msgid "Product not found"
 msgstr "Produkt nicht gefunden"
 
-#: ../includes/class-karuk-products-post-type.php:43
+#: includes/class-karuk-products-post-type.php:43
 msgid "Product is not found in trash"
 msgstr "Produkt wurde im Papierkorb nicht gefunden"
 
-#: ../includes/widgets/class-karuk-categories-menu-widget.php:18
+#: includes/class-karuk-products.php:215
+msgid "Meta"
+msgstr "Meta-Informationen"
+
+#: includes/class-karuk-products.php:225
+msgid "Datasheet Section"
+msgstr "Datenblatt"
+
+#: includes/class-karuk-products.php:235
+msgid "Info Section"
+msgstr "Informationen"
+
+#: includes/class-karuk-products.php:250
+msgid "Top Product"
+msgstr "Top-Produkt"
+
+#: includes/class-karuk-products.php:251
+msgid "Check if this product should be shown among the top products."
+msgstr "Dieses Produkt soll unter den Top-Produkten angezeigt werden."
+
+#: includes/class-karuk-products.php:257
+msgid "Hidden"
+msgstr "Versteckt"
+
+#: includes/class-karuk-products.php:258
+msgid "Check if this product should be hidden on the start site."
+msgstr "Dieses Produkt soll auf der Startseite versteckt werden."
+
+#: includes/class-karuk-products.php:264
+msgid "Image"
+msgstr "Bild"
+
+#: includes/class-karuk-products.php:272
+msgid "Menu Image"
+msgstr "Menü-Bild"
+
+#: includes/class-karuk-products.php:273
+msgid ""
+"This image will be shown when the product is selected to be in the "
+"navigation."
+msgstr "Dieses Bild wird im Navigations-Menü angezeigt."
+
+#: includes/class-karuk-products.php:287
+msgid "Product Images"
+msgstr "Produktbilder"
+
+#: includes/class-karuk-products.php:292
+msgid "Datasheet Link"
+msgstr "Datenblatt Link"
+
+#: includes/class-karuk-products.php:295
+msgid "Facts Table"
+msgstr "Übersichts-Tabelle (Fakten)"
+
+#: includes/class-karuk-products.php:308
+msgid "Files"
+msgstr "Dateien"
+
+#: includes/class-karuk-products.php:312
+msgid "Title"
+msgstr "Titel"
+
+#: includes/class-karuk-products.php:313
+msgid "Content"
+msgstr "Inhalt"
+
+#: includes/widgets/class-karuk-categories-menu-widget.php:18
 msgid "Product Categories List"
 msgstr "Liste der Produktkategorien"
 
-#: ../includes/widgets/class-karuk-categories-menu-widget.php:68
+#: includes/widgets/class-karuk-categories-menu-widget.php:68
 msgid "Products Categories"
 msgstr "Produktkategorien"
 
-#: ../includes/widgets/class-karuk-categories-menu-widget.php:77
+#: includes/widgets/class-karuk-categories-menu-widget.php:73
+msgid "Title:"
+msgstr "Titel:"
+
+#: includes/widgets/class-karuk-categories-menu-widget.php:77
 msgid "Show post counts"
 msgstr "Zeige Anzahl der Posts"
 
-#: ../public/partials/single-product.php:27
+#: public/partials/single-product.php:27
 msgid "Show more in "
 msgstr "Mehr anzeigen in "
 
-#: ../public/partials/single-product.php:109
+#: public/partials/single-product.php:109
 msgid "Technical Facts"
 msgstr "Technische Daten"
 
-#: ../public/partials/single-product.php:113
+#: public/partials/single-product.php:113
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: ../public/partials/single-product.php:134
+#: public/partials/single-product.php:134
 msgid "File"
 msgstr "Datei"

@@ -176,7 +176,7 @@ class Karuk_Products_Metabox_Info {
 		$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
 
 		// Display the form, using the current value.
-		echo '<p><i>Enter title and content for the information boxes here. They accept HTML code as well.</i></p>';
+		echo '<p><i>'. __('Enter title and content for the information boxes here. They accept HTML code as well.', 'karuk-products') .'</i></p>';
 		echo '<table class="form-table">';
 		foreach ($this->fields as $field) {
 		// get current post meta data
