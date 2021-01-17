@@ -24,7 +24,7 @@ the_post();
     <div class="container">
       <?php if ( $category_name ): ?>
         <div class="product_link">
-          <a href="<?php echo get_category_link( $category_name->term_id ); ?>"><?php echo __('Show more in ', 'karuk'); echo $category_name->name; ?></a>
+          <a href="<?php echo get_category_link( $category_name->term_id ); ?>"><?php echo __('Show more in ', 'karuk-products'); echo $category_name->name; ?></a>
         </div>
       <?php endif; ?>
       <?php 
@@ -106,13 +106,13 @@ the_post();
            
         </div>
         <div class="column is-half">
-          <h2 class="title is-4"><?php _e('Technical Facts', 'karuk'); ?></h2>
+          <h2 class="title is-4"><?php _e('Technical Facts', 'karuk-products'); ?></h2>
           <?php echo $post_custom['kp_products_table'][0]; ?>
 
           <a target="_blank" href="<?php echo $post_custom['kp_manufacturer'][0]; ?>" class="button is-light is-small" itemprop="manufacturer">
-            <span><?php _e('Manufacturer', 'karuk'); ?></span>
+            <span><?php _e('Manufacturer', 'karuk-products'); ?></span>
           </a>
-          <a target="_blank" href="<?php echo $post_custom['kp_datasheet'][0]; ?>" class="button is-light is-small"><?php _e('Datasheet', 'karuk'); ?></a>
+          <a target="_blank" href="<?php echo $post_custom['kp_datasheet'][0]; ?>" class="button is-light is-small"><?php _e('Datasheet', 'karuk-products'); ?></a>
         </div>
       </div>
     </div>
