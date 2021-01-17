@@ -212,7 +212,7 @@ class Karuk_Products {
 		// Register metabox and save function when publishing the custom post-type.
 		$karuk_products_meta_config_top = array(
 	    'id'             => 'products_meta_box_top',    // meta box id, unique per meta box
-	    'title'          => 'Meta',          				// meta box title
+	    'title'          => __('Meta', 'karuk-products'),          				// meta box title
 	    'pages'          => array('products'),      // post types, accept custom post types as well, default is array('post'); optional
 	    'context'        => 'normal',            		// where the meta box appear: normal (default), advanced, side; optional
 	    'priority'       => 'high',            			// order of meta box: high (default), low; optional
@@ -222,7 +222,7 @@ class Karuk_Products {
 	  );
 		$karuk_products_meta_config_datasheet = array(
 	    'id'             => 'products_meta_box_datasheet',    // meta box id, unique per meta box
-	    'title'          => 'Datasheet Section',          				// meta box title
+	    'title'          => __('Datasheet Section', 'karuk-products'),          				// meta box title
 	    'pages'          => array('products'),      // post types, accept custom post types as well, default is array('post'); optional
 	    'context'        => 'normal',            		// where the meta box appear: normal (default), advanced, side; optional
 	    'priority'       => 'high',            			// order of meta box: high (default), low; optional
@@ -232,7 +232,7 @@ class Karuk_Products {
 	  );
 	  $karuk_products_meta_config_info = array(
 	    'id'             => 'products_meta_box_info',    // meta box id, unique per meta box
-	    'title'          => 'Info Section',          				// meta box title
+	    'title'          => __('Info Section', 'karuk-products'),          				// meta box title
 	    'pages'          => array('products'),      // post types, accept custom post types as well, default is array('post'); optional
 	    'context'        => 'normal',            		// where the meta box appear: normal (default), advanced, side; optional
 	    'priority'       => 'high',            			// order of meta box: high (default), low; optional
@@ -244,10 +244,37 @@ class Karuk_Products {
 	  	// Top Product box
 	  	$karuk_products_meta_top = new AT_Meta_Box($karuk_products_meta_config_top);
 
-	  	$karuk_products_meta_top->addCheckbox($this->prefix.'top_product', array('name'=> 'Top Product', 'desc' => 'Check if this product should be shown among the top products.'));
-	  	$karuk_products_meta_top->addCheckbox($this->prefix.'not_featured', array('name'=> 'Hidden', 'desc' => 'Check if this product should be hidden on the start site.'));
-	  	$karuk_products_meta_top->addImage($this->prefix.'top_image_field_id', array('name'=> 'Image', 'format' => '16_9'), false);
-	  	$karuk_products_meta_top->addImage($this->prefix.'menu_image_field_id', array('name'=> 'Menu Image', 'desc' => 'This image will be shown when the product is selected to be in the navigation.', 'format' => '16_9'), false);
+      $karuk_products_meta_top->addCheckbox(
+        $this->prefix.'top_product', 
+        array(
+          'name'=> __('Top Product', 'karuk-products'), 
+          'desc' => __('Check if this product should be shown among the top products.', 'karuk-products')
+        )
+      );
+      $karuk_products_meta_top->addCheckbox(
+        $this->prefix.'not_featured', 
+        array(
+          'name'=> __('Hidden', 'karuk-products'), 
+          'desc' => __('Check if this product should be hidden on the start site.', 'karuk-products')
+        )
+      );
+      $karuk_products_meta_top->addImage(
+        $this->prefix.'top_image_field_id', 
+        array(
+          'name'=> __('Image', 'karuk-products'), 
+          'format' => '16_9'
+        ), 
+        false
+      );
+      $karuk_products_meta_top->addImage(
+        $this->prefix.'menu_image_field_id', 
+        array(
+          'name'=> __('Menu Image', 'karuk-products'), 
+          'desc' => __('This image will be shown when the product is selected to be in the navigation.', 'karuk-products'), 
+          'format' => '16_9'
+        ), 
+        false
+      );
 
 	  	$karuk_products_meta_top->Finish();
 
@@ -257,15 +284,15 @@ class Karuk_Products {
 	  	$repeater_fields_images[] = $karuk_products_meta_datasheet->addImage($this->prefix.'product_image_field_id', array('name'=> '', 'width' => '100%', 'format' => '1_1'), true);
 	  	$karuk_products_meta_datasheet->addRepeaterBlock($this->prefix.'product_images',array(
 		    'inline'   => true, 
-		    'name'     => 'Product Images',
+		    'name'     => __('Product Images', 'karuk-products'),
 		    'fields'   => $repeater_fields_images, 
 		    'sortable' => true
 		  ));
 
-	  	$karuk_products_meta_datasheet->addText($this->prefix.'datasheet', array('name'=> 'Datasheet Link'));
-	  	$karuk_products_meta_datasheet->addText($this->prefix.'manufacturer', array('name'=> 'Manufacturer Link'));
+	  	$karuk_products_meta_datasheet->addText($this->prefix.'datasheet', array('name'=> __('Datasheet Link', 'karuk-products')));
+	  	$karuk_products_meta_datasheet->addText($this->prefix.'manufacturer', array('name'=> __('Manufacturer Link', 'karuk-products')));
 	  	$karuk_products_meta_datasheet->addWysiwyg($this->prefix.'products_table', array(
-	  		'name'=> 'Facts Table', 
+	  		'name'=> __('Facts Table', 'karuk-products'), 
 	  		'std' => $this->html_table,
 	  		'style' => 'width: 100%;',
 	  	));
@@ -278,12 +305,12 @@ class Karuk_Products {
 	  	$repeater_fields_downloads[] = $karuk_products_meta_info->addFile($this->prefix.'product_file_field_id',array('name'=> ''),true);
 	  	$karuk_products_meta_info->addRepeaterBlock($this->prefix.'product_files', array(
 		    'inline'   => true, 
-		    'name'     => 'Files',
+		    'name'     => __('Files', 'karuk-products'),
 		    'fields'   => $repeater_fields_downloads, 
 		    'sortable' => false
 		  ));
-		  $karuk_products_meta_info->addText($this->prefix.'info_title', array('name'=> 'Title'));
-		  $karuk_products_meta_info->addWysiwyg($this->prefix.'info_content', array('name'=> 'Content'));
+		  $karuk_products_meta_info->addText($this->prefix.'info_title', array('name'=> __('Title', 'karuk-products')));
+		  $karuk_products_meta_info->addWysiwyg($this->prefix.'info_content', array('name'=> __('Content', 'karuk-products')));
 
 		  $karuk_products_meta_info->Finish();
 	  }
