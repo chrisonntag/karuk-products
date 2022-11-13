@@ -380,9 +380,9 @@ class AT_Meta_Box {
     echo "<div class='at-repeat".$class."' id='{$field['id']}'>";
 
     $c = 0;
-    $meta = get_post_meta($post->ID,$field['id'],true);
+    $meta = get_post_meta($post->ID,$field['id'],false);
 
-      if (count($meta) > 0 && is_array($meta) ){
+      if ( is_array($meta) && count($meta) > 0 ){
          foreach ($meta as $me){
            //for labling toggles
            $mmm =  isset($me[$field['fields'][0]['id']])? $me[$field['fields'][0]['id']]: "";
@@ -723,8 +723,7 @@ class AT_Meta_Box {
     $type     = (is_array($type)? implode("|",$type) : $type);
     $ext      = (is_array($ext)? implode("|",$ext) : $ext);
     $id       = $field['id'];
-    $filename = basename( get_attached_file( $meta['id'] ) );
-    $li       = ($has_file)? "<li style='text-align: center;'><a style='word-break: break-all;' href='{$value['url']}' target='_blank'>{$filename}</a></li>": "";
+    $li       = ($has_file)? "<li style='text-align: center;'><a style='word-break: break-all;' href='{$value['url']}' target='_blank'>{$value['url']}</a></li>": "";
 
     $ext_re = '/[\w|\.|:|\/|-]+\/([\w|\.|:|\/|-]+)\.(\w+)/m';
     preg_match_all($ext_re, $value['url'], $extension, PREG_SET_ORDER, 0);

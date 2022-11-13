@@ -71,7 +71,11 @@
         freeMove:true,
         swipeThreshold: 40,
  
-        responsive : []
+        responsive : [],
+
+        onSliderLoad: function (el) {
+            el.find('li').zoom();
+        }
     });
 
 })( jQuery );
