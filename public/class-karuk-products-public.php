@@ -113,6 +113,7 @@ class Karuk_Products_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name.'_lightslider', plugin_dir_url( __FILE__ ) . 'js/lightslider.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name.'_zoom', plugin_dir_url( __FILE__ ) . 'js/jquery.zoom.js', array( 'jquery' ), $this->version, true );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/karuk-products-public.js', array( 'jquery', $this->plugin_name.'_lightslider' ), $this->version, true );
 
 	}
