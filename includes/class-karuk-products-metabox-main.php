@@ -149,14 +149,14 @@ class Karuk_Products_Metabox_Main {
 		wp_nonce_field( 'karuk_products_inner_meta_box_main', 'products_meta_box_main_nonce' );
 
 		// Use get_post_meta to retrieve an existing value from the database.
-		$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
+                // $value = get_post_meta( $post->ID, '', true ); // _my_meta_value_key
 
 		// Display the form, using the current value.
 
 		echo '<table class="form-table">';
 		foreach ($this->fields as $field) {
-		// get current post meta data
-			$meta = get_post_meta($post->ID, $field['id'], true);
+		  // get current post meta data
+                  $meta = get_post_meta($post->ID, $field['id'], true);
 			echo '<tr>',
 			'<th style="width:20%"><label for="'. __($field['name'],'karuk-products'). '">', __($field['name'],'karuk-products'), '</label></th>',
 			'<td>';

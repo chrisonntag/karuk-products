@@ -380,7 +380,7 @@ class AT_Meta_Box {
     echo "<div class='at-repeat".$class."' id='{$field['id']}'>";
 
     $c = 0;
-    $meta = get_post_meta($post->ID,$field['id'],false);
+    $meta = get_post_meta($post->ID, $field['id'], true );
 
       if ( is_array($meta) && count($meta) > 0 ){
          foreach ($meta as $me){
@@ -787,7 +787,7 @@ class AT_Meta_Box {
     $name         = esc_attr( $field['id'] );
     $value        = isset($meta['id']) ? $meta : $std;
 
-    $value['url'] = isset($meta['src'])? $meta['src'] : $value['url']; //backwords capability
+    $value['url'] = isset($meta['src'])? $meta['src'] : $value['url']; //backwards capability
 
     $has_image    = empty($value['url'])? false : true;
     $w            = isset($field['width'])? $field['width'] : 'auto';
